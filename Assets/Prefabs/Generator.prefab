@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5422607303416754914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5422607303416754912}
+  - component: {fileID: 5422607303416754913}
+  m_Layer: 0
+  m_Name: Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5422607303416754912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422607303416754914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5422607303416754913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422607303416754914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d654cb1fa22a4434692e65cbb22c4be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 12, y: 4}
+  startPos: 0
+  rooms:
+  - room: {fileID: 2112663908383828915, guid: 04b828e09fc016e4398ce930fd44632f, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 0, y: 0}
+    obligatory: 1
+  - room: {fileID: 2901040665477949442, guid: 16d35e368498b2f4dbdbb8ef51adec7b, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 100, y: 100}
+    obligatory: 0
+  - room: {fileID: 6075408174083895849, guid: 529800b65fc7d6749921bf1909d5d7ba, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 100, y: 100}
+    obligatory: 0
+  - room: {fileID: 540292429897445764, guid: 2db7b50d922e7ab4286a014f30295b05, type: 3}
+    minPosition: {x: 0, y: 2}
+    maxPosition: {x: 100, y: 100}
+    obligatory: 0
+  offset: {x: 100, y: 100}
+  minimap: {fileID: 0}
