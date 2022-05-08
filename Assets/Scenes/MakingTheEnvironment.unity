@@ -1594,6 +1594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8df3746f46c949429b741b6b3defcb3, type: 3}
+--- !u!1 &1766883129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2945700957915501460, guid: 9d82a373896047c49a5befb197adce83, type: 3}
+  m_PrefabInstance: {fileID: 6726749633776881287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1814605408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 514768858529389496, guid: 39ae959bef0de2b48aa45a5ca9d9d639, type: 3}
@@ -2003,6 +2008,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 312866235971581947, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
+      propertyPath: completeMinimap
+      value: 
+      objectReference: {fileID: 1766883129}
     - target: {fileID: 6269133037332478330, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2195,6 +2204,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1628564308927327921, guid: 9d82a373896047c49a5befb197adce83, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2581488711557430993, guid: 9d82a373896047c49a5befb197adce83, type: 3}
       propertyPath: m_Name
       value: MinimapObjects

@@ -149,7 +149,7 @@
             "id": "a97eb720-9ccc-45bf-8e8b-ec1a70732ed8",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "ShowCompleteMinimap",
                     "type": "Button",
                     "id": "46f8cf11-061b-488a-bc08-0106c3d02338",
                     "expectedControlType": "Button",
@@ -162,11 +162,11 @@
                 {
                     "name": "",
                     "id": "431ea1ea-0670-4ba6-9756-e3076158e73c",
-                    "path": "",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "New action",
+                    "groups": "Keyboard",
+                    "action": "ShowCompleteMinimap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

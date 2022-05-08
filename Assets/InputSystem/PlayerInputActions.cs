@@ -171,7 +171,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""a97eb720-9ccc-45bf-8e8b-ec1a70732ed8"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""ShowCompleteMinimap"",
                     ""type"": ""Button"",
                     ""id"": ""46f8cf11-061b-488a-bc08-0106c3d02338"",
                     ""expectedControlType"": ""Button"",
@@ -184,11 +184,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""431ea1ea-0670-4ba6-9756-e3076158e73c"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""New action"",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ShowCompleteMinimap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -228,7 +228,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_ShowCompleteMinimap = m_UI.FindAction("ShowCompleteMinimap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,12 +345,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_ShowCompleteMinimap;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @ShowCompleteMinimap => m_Wrapper.m_UI_ShowCompleteMinimap;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -360,16 +360,16 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNewaction;
+                @ShowCompleteMinimap.started -= m_Wrapper.m_UIActionsCallbackInterface.OnShowCompleteMinimap;
+                @ShowCompleteMinimap.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnShowCompleteMinimap;
+                @ShowCompleteMinimap.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnShowCompleteMinimap;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @ShowCompleteMinimap.started += instance.OnShowCompleteMinimap;
+                @ShowCompleteMinimap.performed += instance.OnShowCompleteMinimap;
+                @ShowCompleteMinimap.canceled += instance.OnShowCompleteMinimap;
             }
         }
     }
@@ -401,6 +401,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnShowCompleteMinimap(InputAction.CallbackContext context);
     }
 }

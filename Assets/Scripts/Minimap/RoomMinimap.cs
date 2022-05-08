@@ -23,6 +23,7 @@ public class RoomMinimap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameController.MoveMinimapCamera(transform.position);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 

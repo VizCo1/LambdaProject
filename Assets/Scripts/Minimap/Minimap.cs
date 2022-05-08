@@ -32,6 +32,7 @@ public class Minimap : MonoBehaviour
 
             var minimapRoom = Instantiate(roomMinimap, roomPosition, Quaternion.identity, transform);
             minimapRoom.name += ": " + i;
+            minimapRoom.transform.GetChild(0).gameObject.SetActive(false);
  
             InstantiateHallways(NUMBER_OF_DOORS, room, i+2);
         }
@@ -47,7 +48,7 @@ public class Minimap : MonoBehaviour
             if (doors[i] = room.GetChild(PORTALS_OBJECT).GetChild(i).gameObject.activeSelf)
             {
                 Vector3[] data = LineDirectionAndOffset(i);
-                Instantiate(lineDoor, room.position + data[0], Quaternion.Euler(data[1]), transform.GetChild(roomIndex));
+                Instantiate(lineDoor, room.position + data[0], Quaternion.Euler(data[1]), transform.GetChild(roomIndex).GetChild(0));
             }
         }
     }
