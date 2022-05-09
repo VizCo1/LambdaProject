@@ -5,13 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject blackImageCanvas;
-
-    [SerializeField]
     private Camera minimapCamera;
-
-    [SerializeField]
-    private GameObject completeMap;
 
     [SerializeField]
     private GameObject player;
@@ -36,7 +30,8 @@ public class GameController : MonoBehaviour
     public void MoveMinimapCamera(Vector3 nextRoomPosition)
     {
         Vector3 offset = new Vector3(7.5f, 10, -7.5f);
-        minimapCamera.transform.position = nextRoomPosition + offset;
+        Vector3 finalPos = nextRoomPosition + offset;
+        minimapCamera.transform.position = finalPos;
     }
 
     public void MovePlayerToNextRoom(Vector3 nextPosition)

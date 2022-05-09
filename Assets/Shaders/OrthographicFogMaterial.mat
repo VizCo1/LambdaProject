@@ -32,6 +32,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _DistorionMaskTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -49,6 +53,9 @@ Material:
     - BOOLEAN_6C4164AC: 1
     - Boolean_142b19edbb1f4345be2e9df6dd9e449d: 0
     - Vector1_BF525535: 5
+    - _DistortionAmunt: 1
+    - _NoiseScale: 10
+    - _NoiseSpeed: 0.02
     - _QueueControl: 0
     - _QueueOffset: -2
     m_Colors:

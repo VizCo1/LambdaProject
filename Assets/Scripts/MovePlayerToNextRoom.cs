@@ -17,7 +17,7 @@ public class MovePlayerToNextRoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // ManageTransitionCanvas does nothing at the moment --> it just does not let the player move 0.35 seconds
+            // ManageTransitionCanvas does nothing at the moment --> it just does not let the player move for 0.35 seconds
             StartCoroutine(gameController.ManageTransitionCanvas());
             gameController.MovePlayerToNextRoom(positionToTP);
         }
