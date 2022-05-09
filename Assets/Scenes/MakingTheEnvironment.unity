@@ -2204,10 +2204,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1628564308927327921, guid: 9d82a373896047c49a5befb197adce83, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2581488711557430993, guid: 9d82a373896047c49a5befb197adce83, type: 3}
       propertyPath: m_Name
       value: MinimapObjects

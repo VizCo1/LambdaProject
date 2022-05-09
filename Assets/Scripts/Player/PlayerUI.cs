@@ -42,9 +42,7 @@ public class PlayerUI : MonoBehaviour
     void HideCompleteMinimap()
     {
         StartCoroutine(DecreaseImageAlpha());
-        StartCoroutine(DecreaseBorderAlpha());
-        completeMinimapImage.color = initialCompleteMinimapImageColor;
-        completeMinimapBorder.color = initialCompleteMinimapBorderColor;
+        StartCoroutine(DecreaseBorderAlpha());        
     }
 
     IEnumerator IncreaseImageAlpha()
@@ -77,6 +75,7 @@ public class PlayerUI : MonoBehaviour
             completeMinimapImage.color = color;
             yield return new WaitForSeconds(0.015f);
         }
+        completeMinimapImage.color = initialCompleteMinimapImageColor;
     }
 
     IEnumerator DecreaseBorderAlpha()
@@ -88,6 +87,7 @@ public class PlayerUI : MonoBehaviour
             completeMinimapBorder.color = color;
             yield return new WaitForSeconds(0.015f);
         }
+        completeMinimapBorder.color = initialCompleteMinimapBorderColor;
     }
 
     void RestartCompleteMinimapColors()
