@@ -1,18 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class LaserEnemy : MonoBehaviour
+public class LaserEnemy : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private CapsuleCollider laserCollider;
+
+    [SerializeField]
+    private VisualEffect laser;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        base.health = 100;
+    }
+
+    protected override void LookAtPlayer()
+    {
+        base.LookAtPlayer(); // this is --> transform.LookAt(player);
+        //if (!trailsRotation.activeSelf) trailsRotation.SetActive(true);
+
+    }
+
+    protected override void ChasePlayer()
+    {
+        base.ChasePlayer();
+        //if (trailsRotation.activeSelf) trailsRotation.SetActive(false);
+    }
+
+    protected override void AttackPlayer()
+    {
+        //Make sure enemy doesn't move
+        agent.SetDestination(transform.position);
+
+        LookAtPlayer();
+
+        if (!alreadyAttacked)
+        {
+            ///Attack code here
+            LaunchAttack();
+            ///End of attack code
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    protected override void LaunchAttack()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DestroyAfterTime(Rigidbody bulletRb, float time)
     {
-        
+        GameObject bullet = bulletRb.gameObject;
+        yield return new WaitForSeconds(time);
+        Destroy(bullet);
     }
 }

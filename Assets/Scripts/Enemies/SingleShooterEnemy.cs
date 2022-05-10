@@ -16,19 +16,6 @@ public class SingleShooterEnemy : Enemy
         base.health = 100;
     }
 
-    protected override void LookAtPlayer()
-    {
-        base.LookAtPlayer(); // this is --> transform.LookAt(player);
-        //if (!trailsRotation.activeSelf) trailsRotation.SetActive(true);
-
-    }
-
-    protected override void ChasePlayer()
-    {
-        base.ChasePlayer();
-        //if (trailsRotation.activeSelf) trailsRotation.SetActive(false);
-    }
-
     protected override void LaunchAttack()
     {
         Rigidbody rb = Instantiate(projectile, shootingTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
