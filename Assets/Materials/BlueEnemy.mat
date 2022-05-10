@@ -179,6 +179,7 @@ Material:
     - Vector1_BF525535: 1
     - _AlphaClip: 0
     - _AlphaClipThreshold: 0.46
+    - _AmbientStrength: 0.25
     - _BASE_COLOR_WEIGHT: 1
     - _BUMP_MAP_STRENGTH: 0.3
     - _Blend: 0
@@ -218,6 +219,7 @@ Material:
     - _EmissionEnabled: 0
     - _EnvironmentReflections: 1
     - _Erosion: 0
+    - _FalloffAmount: 0.47
     - _FlipbookMode: 0
     - _FoamAlpha: 0.5
     - _FoamDepth: 10
@@ -225,11 +227,13 @@ Material:
     - _FoamShoreWidth: 0
     - _FreselPower: 2.32
     - _FresnelPower: 0.63
+    - _FresnelSize: 0.1
     - _FresnelThreshold: -0.2
     - _FrostAmount: 0.1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LightingCutoff: 0.33
     - _LightingEnabled: 0
     - _METALNESS: 0
     - _Metallic: 0
@@ -252,7 +256,7 @@ Material:
     - _SPECULAR_IOR: 1.92
     - _SPECULAR_ROUGHNESS: 89.23
     - _Scale: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 50
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
@@ -284,11 +288,13 @@ Material:
     - _CausticsColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.4716981, g: 0.10857956, b: 0.10857956, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _DiffuseColor: {r: 0, g: 0.1639626, b: 1, a: 1}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 0, g: 0, b: 0, a: 0}
     - _FoamSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _FoamTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _GalaxyColor: {r: 0, g: 0.014327049, b: 1, a: 0}
     - _OutsideColor: {r: 0, g: 0.10471203, b: 3.9999995, a: 1}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
@@ -297,6 +303,7 @@ Material:
     - _ShoreColor: {r: 1, g: 1, b: 1, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SpecularColor: {r: 1, g: 0, b: 0, a: 1}
     - _StarsOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
