@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        LookAtPlayer();
 
         if (!alreadyAttacked)
         {
@@ -121,6 +121,11 @@ public class Enemy : MonoBehaviour
     protected virtual void LaunchAttack()
     {
 
+    }
+
+    protected virtual void LookAtPlayer()
+    {
+        transform.LookAt(player);
     }
 
     private void OnDrawGizmosSelected()

@@ -43,7 +43,7 @@ public class PlayerCollisions : MonoBehaviour
         else if (other.transform.CompareTag("Enemy"))
         {
             Debug.Log("Collision with an enemy");
-            StartCoroutine(DamageTaken(0.25f));
+            StartCoroutine(DamageTaken(0.4f));
             PushPlayer(other.transform.position, 400f);
         }
     }
@@ -65,7 +65,7 @@ public class PlayerCollisions : MonoBehaviour
     {
         StartCoroutine(PlayerCannotMoveForTime(time));
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             sphere.SetActive(true);
             yield return new WaitForSeconds(0.05f);

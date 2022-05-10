@@ -21,6 +21,8 @@ public class PlayerMove : MonoBehaviour
     private bool canDash;
     public bool canMove;
 
+    [SerializeField] private GameObject trails;
+
     private void Awake()
     {
         canDash = true;
@@ -31,8 +33,8 @@ public class PlayerMove : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 
-        playerInputActions.Player.Movement.performed += ctx => { inputVector = ctx.ReadValue<Vector2>(); };
-        playerInputActions.Player.Movement.canceled += ctx => { inputVector = Vector2.zero;};
+        playerInputActions.Player.Movement.performed += ctx => { inputVector = ctx.ReadValue<Vector2>(); trails.SetActive(true); };
+        playerInputActions.Player.Movement.canceled += ctx => { inputVector = Vector2.zero; trails.SetActive(false); };
 
         playerInputActions.Player.Dash.performed += ctx => { if (canDash) { canDash = false; Dash(); } };
     }
@@ -76,10 +78,8 @@ public class PlayerMove : MonoBehaviour
         Color newColor = Color.white;
         for(int i = 0; i < 4; i++)
         {
-            Debug.Log("1");
             mainModel.material.color = newColor;
-            yield return new WaitForSeconds(0.2f);
-            Debug.Log("2");
+            yield return new WaitForSeconds(0.15f);
             mainModel.material.color = basicColor;
             yield return new WaitForSeconds(0.05f);
         }

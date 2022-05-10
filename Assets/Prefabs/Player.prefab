@@ -824,6 +824,7 @@ MonoBehaviour:
   turnSpeed: 700
   mainModel: {fileID: 4387872655479540347}
   canMove: 0
+  trails: {fileID: 6903582780146620834}
 --- !u!136 &2110747010
 CapsuleCollider:
   m_ObjectHideFlags: 0

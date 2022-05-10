@@ -5,14 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerSword : MonoBehaviour
 {
-    const int MIN_SPEED = 250;
-    const int MAX_SPEED = 700;
+    const int MIN_SPEED = 500;
+    const int MAX_SPEED = 750;
 
 
     float timeStart = 0; 
 
     private PlayerInputActions playerInputActions;
-    private Rigidbody rg;
+    //private Rigidbody rb;
 
     [SerializeField] private Transform player;
     [SerializeField] private TrailRenderer[] trailRenderers;
@@ -41,7 +41,7 @@ public class PlayerSword : MonoBehaviour
         scaleCompleted = false;
         initialScale = transform.localScale;
 
-        rg = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();

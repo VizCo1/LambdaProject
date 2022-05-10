@@ -5,10 +5,26 @@ using UnityEngine.AI;
 
 public class SingleShooterEnemy : Enemy
 {
+    [SerializeField]
+    private GameObject trailsRotation;
+
     protected override void Awake()
     {
         base.Awake();
         base.health = 100;
+    }
+
+    protected override void LookAtPlayer()
+    {
+        base.LookAtPlayer(); // this is --> transform.LookAt(player);
+        //if (!trailsRotation.activeSelf) trailsRotation.SetActive(true);
+
+    }
+
+    protected override void ChasePlayer()
+    {
+        base.ChasePlayer();
+        //if (trailsRotation.activeSelf) trailsRotation.SetActive(false);
     }
 
     protected override void LaunchAttack()
