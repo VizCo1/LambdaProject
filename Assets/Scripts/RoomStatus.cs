@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RoomStatus : MonoBehaviour
 {
-    //[SerializeField]
-    //Enemy[] enemies;
+    [SerializeField]
+    Enemy[] enemies;
 
     [SerializeField]
     GameObject portalPlatforms;
@@ -18,8 +18,8 @@ public class RoomStatus : MonoBehaviour
     void Awake()
     {
         isRoomCompleted = false;
-        //numberOfEnemies = enemies.Length;
-        numberOfEnemies = 0;
+        numberOfEnemies = enemies.Length;
+        //numberOfEnemies = 0;
 
         if (numberOfEnemies == 0) StartCoroutine(ElevateDoors(limit)); 
     }
