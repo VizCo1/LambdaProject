@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
 
     private PlayerMove playerMove;
 
-    // Update is called once per frame
     void Start()
     {
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();

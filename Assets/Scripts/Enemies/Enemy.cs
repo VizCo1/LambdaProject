@@ -24,10 +24,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float timeBetweenAttacks;
     protected bool alreadyAttacked;
-    [SerializeField]
-    protected GameObject projectile;
-    [SerializeField]
-    protected Transform shootingTransform;
 
     //States
     [SerializeField]

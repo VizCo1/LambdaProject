@@ -5,9 +5,11 @@ using UnityEngine.AI;
 
 public class MultipleShooterEnemy : Enemy
 {
-
     private bool leftSide;
 
+    [SerializeField]
+    protected GameObject projectile;
+    [SerializeField]
     private Transform leftShootingTransform;
     [SerializeField]
     private Transform rightShootingTransform;
@@ -18,7 +20,6 @@ public class MultipleShooterEnemy : Enemy
         base.health = 100;
 
         leftSide = Random.Range(0, 1) > 0.5f ? true : false;
-        leftShootingTransform = base.shootingTransform;
     }
 
     protected override void LaunchAttack()
@@ -36,7 +37,7 @@ public class MultipleShooterEnemy : Enemy
             leftSide = true;
         }
 
-        Rigidbody rb = Instantiate(base.projectile, transformPositionToUse, Quaternion.identity).GetComponent<Rigidbody>();
+        Rigidbody rb = Instantiate(projectile, transformPositionToUse, Quaternion.identity).GetComponent<Rigidbody>();
         rb.gameObject.transform.LookAt(player.transform.position);
         rb.AddForce(transform.forward * 8f, ForceMode.Impulse);
         StartCoroutine(DestroyAfterTime(rb, 5f));

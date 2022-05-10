@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] private MeshRenderer mainModel;
 
+    private bool dashIsReady;
     private bool canDash;
     public bool canMove;
 
@@ -25,7 +26,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
-        canDash = true;
+        dashIsReady = true;
+        canDash = false;
         canMove = true;
 
         rb = GetComponent<Rigidbody>();
@@ -36,7 +38,7 @@ public class PlayerMove : MonoBehaviour
         playerInputActions.Player.Movement.performed += ctx => { inputVector = ctx.ReadValue<Vector2>(); trails.SetActive(true); };
         playerInputActions.Player.Movement.canceled += ctx => { inputVector = Vector2.zero; trails.SetActive(false); };
 
-        playerInputActions.Player.Dash.performed += ctx => { if (canDash) { canDash = false; Dash(); } };
+        playerInputActions.Player.Dash.performed += ctx => { if (dashIsReady && inputVector != Vector2.zero) canDash = true; };
     }
 
     private void Update()
@@ -47,6 +49,8 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         if (canMove) Move();
+
+        if (canDash) Dash();
     }
 
     private void Move()
@@ -67,7 +71,9 @@ public class PlayerMove : MonoBehaviour
 
     public void Dash()
     {
-        rb.AddForce(transform.GetChild(0).forward * 5f, ForceMode.Impulse);
+        canDash = false;
+        dashIsReady = false;
+        rb.AddForce(transform.GetChild(0).forward * 250f, ForceMode.Force);
         StartCoroutine(DashTimer());
     }
 
@@ -83,7 +89,7 @@ public class PlayerMove : MonoBehaviour
             mainModel.material.color = basicColor;
             yield return new WaitForSeconds(0.05f);
         }
-        canDash = true;
-    }
 
+        dashIsReady = true;
+    }
 }

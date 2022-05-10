@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class SingleShooterEnemy : Enemy
 {
     [SerializeField]
-    private GameObject trailsRotation;
+    protected GameObject projectile;
+    [SerializeField]
+    private Transform shootingTransform;
 
     protected override void Awake()
     {
@@ -29,7 +31,7 @@ public class SingleShooterEnemy : Enemy
 
     protected override void LaunchAttack()
     {
-        Rigidbody rb = Instantiate(base.projectile, base.shootingTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        Rigidbody rb = Instantiate(projectile, shootingTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.gameObject.transform.LookAt(player.transform.position);
         rb.AddForce(transform.forward * 8f, ForceMode.Impulse);
         StartCoroutine(DestroyAfterTime(rb, 3.5f));
