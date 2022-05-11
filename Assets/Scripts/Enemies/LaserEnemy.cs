@@ -6,28 +6,36 @@ using UnityEngine.VFX;
 public class LaserEnemy : Enemy
 {
     [SerializeField]
-    private CapsuleCollider laserCollider;
+    private GameObject laserCollider;
 
     [SerializeField]
     private VisualEffect laser;
 
+    private bool reloading;
+
+    private float laserDuration;
     protected override void Awake()
     {
         base.Awake();
         base.health = 100;
+        reloading = false;
+        laserDuration = laser.GetFloat("Duration");
     }
 
-    protected override void LookAtPlayer()
+    protected override void Update()
     {
-        base.LookAtPlayer(); // this is --> transform.LookAt(player);
-        //if (!trailsRotation.activeSelf) trailsRotation.SetActive(true);
+        Debug.Log("Reloading: " + reloading);
+        Debug.Log("AlreadyAttacked: " + alreadyAttacked);
 
-    }
-
-    protected override void ChasePlayer()
-    {
-        base.ChasePlayer();
-        //if (trailsRotation.activeSelf) trailsRotation.SetActive(false);
+        if (!reloading)
+        {
+            base.Update();
+        }
+        else
+        {
+            //agent.SetDestination(transform.position);
+            //LookAtPlayer();
+        }
     }
 
     protected override void AttackPlayer()
@@ -41,22 +49,29 @@ public class LaserEnemy : Enemy
         {
             ///Attack code here
             LaunchAttack();
+            StartCoroutine(Reloading());
             ///End of attack code
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
     protected override void LaunchAttack()
     {
-        
+        laser.Play();
+        laserCollider.SetActive(true);
     }
 
-    IEnumerator DestroyAfterTime(Rigidbody bulletRb, float time)
+    IEnumerator Reloading()
     {
-        GameObject bullet = bulletRb.gameObject;
-        yield return new WaitForSeconds(time);
-        Destroy(bullet);
+        reloading = true;
+        yield return new WaitForSeconds(laserDuration);
+
+        laserCollider.SetActive(false);
+        reloading = false;
+
+        yield return new WaitForSeconds(timeBetweenAttacks);
+
+        ResetAttack();    
     }
 }

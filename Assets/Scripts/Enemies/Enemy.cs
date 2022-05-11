@@ -124,11 +124,6 @@ public class Enemy : MonoBehaviour
         transform.LookAt(player);
     }
 
-    protected virtual string Type()
-    {
-        return "Enemy";
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

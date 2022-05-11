@@ -769,8 +769,8 @@ PrefabInstance:
       value: BlueLaserEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8714211037813784672, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
-      propertyPath: m_Radius
-      value: 0.65
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8714211037813784676, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
       propertyPath: m_RootOrder
@@ -815,14 +815,6 @@ PrefabInstance:
     - target: {fileID: 8714211037813784676, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9079592021871868644, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
-      propertyPath: m_Height
-      value: 14.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9079592021871868644, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
-      propertyPath: m_Center.z
-      value: 6.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
@@ -2104,7 +2096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6269133037332478330, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6269133037332478331, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_RootOrder

@@ -10,6 +10,7 @@ TagManager:
   - LeftPortal
   - Bullet
   - Enemy
+  - Laser
   layers:
   - Default
   - TransparentFX

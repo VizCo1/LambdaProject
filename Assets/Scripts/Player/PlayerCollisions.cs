@@ -12,9 +12,12 @@ public class PlayerCollisions : MonoBehaviour
     [SerializeField]
     GameObject sphere;
 
+    private bool playerIsInvulnerable;
+
     void Start()
     {
         playerRb = playerMove.gameObject.GetComponent<Rigidbody>();
+        playerIsInvulnerable = false;
     }
 
     void Update()
@@ -34,6 +37,8 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (playerIsInvulnerable) return;
+
         if (other.transform.CompareTag("Bullet"))
         {
             Debug.Log("Hit by Bullet");
@@ -45,6 +50,11 @@ public class PlayerCollisions : MonoBehaviour
             Debug.Log("Collision with an enemy");
             StartCoroutine(DamageTaken(0.4f));
             PushPlayer(other.transform.position, 400f);
+        }
+        else if (other.transform.CompareTag("Laser"))
+        {
+            Debug.Log("Hit by Laser");
+            StartCoroutine(DamageTaken(0.1f));
         }
     }
 
@@ -63,6 +73,8 @@ public class PlayerCollisions : MonoBehaviour
 
     IEnumerator DamageTaken(float time)
     {
+        playerIsInvulnerable = true;
+
         StartCoroutine(PlayerCannotMoveForTime(time));
 
         for (int i = 0; i < 2; i++)
@@ -72,6 +84,7 @@ public class PlayerCollisions : MonoBehaviour
             sphere.SetActive(false);
             yield return new WaitForSeconds(0.05f);
         }
+        playerIsInvulnerable = false;
     }
 
     IEnumerator PlayerCannotMoveForTime(float time)
