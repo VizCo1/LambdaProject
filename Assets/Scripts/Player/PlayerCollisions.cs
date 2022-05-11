@@ -45,7 +45,7 @@ public class PlayerCollisions : MonoBehaviour
         {
             //Debug.Log("Hit by Bullet");
             Destroy(other.gameObject);
-            StartCoroutine(DamageTaken(0.1f, 0.5f, 0));
+            StartCoroutine(DamageTaken(0.1f, 0.25f, 0));
         }
         else if (other.transform.CompareTag("Enemy"))
         {

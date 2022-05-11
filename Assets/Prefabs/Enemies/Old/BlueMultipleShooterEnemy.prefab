@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3f70fda0fad4e46b6b45f767e0c197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyBlue: 1
+  isEnemyBlue: 0
   rotationSpeed: 15
   whatIsGround:
     serializedVersion: 2
@@ -454,11 +454,12 @@ MonoBehaviour:
     m_Bits: 8192
   walkPointRange: 15
   timeBetweenAttacks: 0.25
-  sightRange: 6
-  attackRange: 4
+  sightRange: 7
+  attackRange: 5.5
   rayCastTransform: {fileID: 1581371709859993695}
   takeDamageVFX: {fileID: 3310609157908397165}
   healVFX: {fileID: 2978578116397456173}
+  dissolveEnemy: {fileID: 0}
   projectile: {fileID: 4348014508963742073, guid: 84144b4e34b728f469ed4b10e9d65529, type: 3}
   leftShootingTransform: {fileID: 8827924666434166915}
   rightShootingTransform: {fileID: 5845315893279591846}

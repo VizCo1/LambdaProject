@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
 
     private bool isInvulnerable;
 
+    [SerializeField]
+    private DissolveEnemy dissolveEnemy;
     protected virtual void Awake()
     {
         isInvulnerable = false;
@@ -67,10 +69,10 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        Debug.DrawLine(rayCastTransform.position, transform.forward * 100f);
+        Debug.DrawLine(rayCastTransform.position, transform.forward * 20f);
 
         RaycastHit hit;
-        if (Physics.Raycast(rayCastTransform.position, transform.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(rayCastTransform.position, transform.forward, out hit, 20f))
         {
             //Debug.Log(hit.transform.tag);
             if (hit.transform.CompareTag("Player"))
@@ -187,6 +189,8 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            Debug.Log("Starting dissolving");
+            dissolveEnemy.StartDissolveAction();
             Destroy(gameObject);
         }
     }
