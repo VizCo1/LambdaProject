@@ -10,9 +10,13 @@ public class Enemy : MonoBehaviour
     protected Transform player;
 
     [SerializeField]
+    protected float rotationSpeed;
+    protected bool playerIsInFront;
+
+    [SerializeField]
     protected LayerMask whatIsGround, whatIsPlayer;
 
-    protected float health;
+    public float health;
 
     //Patroling
     protected Vector3 walkPoint;
@@ -30,24 +34,49 @@ public class Enemy : MonoBehaviour
     protected float sightRange, attackRange;
     protected bool playerInSightRange, playerInAttackRange;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    protected Transform rayCastTransform;
+
     protected virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-
-        //health = 100;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
+        Debug.Log("Enemy health = " + health);
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        Debug.DrawLine(rayCastTransform.position, transform.forward * 100f);
+
+        RaycastHit hit;
+        if (Physics.Raycast(rayCastTransform.position, transform.forward, out hit, Mathf.Infinity))
+        {
+            Debug.Log(hit.transform.tag);
+            if (hit.transform.CompareTag("Player"))
+            {
+                playerIsInFront = true;
+            }
+            else
+            {
+                playerIsInFront = false;
+            }
+        }
+        else
+        {
+            playerIsInFront = false;
+        }
     }
 
     protected virtual void Patroling()
@@ -87,7 +116,7 @@ public class Enemy : MonoBehaviour
 
         LookAtPlayer();
 
-        if (!alreadyAttacked)
+        if (!alreadyAttacked && playerIsInFront)
         {
             ///Attack code here
             LaunchAttack();
@@ -121,7 +150,13 @@ public class Enemy : MonoBehaviour
 
     protected virtual void LookAtPlayer()
     {
-        transform.LookAt(player);
+        Quaternion lookRotation = Quaternion.LookRotation(player.position - transform.position);
+        lookRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lookRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+        Quaternion initialRotation = transform.rotation;
+
+        transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, Time.deltaTime * rotationSpeed);
+        //LookCoroutine = StartCoroutine(LookAt());
     }
 
     private void OnDrawGizmosSelected()

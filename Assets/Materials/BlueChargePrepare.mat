@@ -228,7 +228,7 @@ Material:
     - _FreselPower: 2.32
     - _FresnelPower: 0.63
     - _FresnelSize: 0.1
-    - _FresnelThreshold: -0.951
+    - _FresnelThreshold: -0.2
     - _FrostAmount: 0.1
     - _GlossMapScale: 0
     - _Glossiness: 0

@@ -1,12 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ChargeEnemy : Enemy
 {
     private const float INITIAL_FRESNEL_THRESHOLS = -0.2f;
-
 
     [SerializeField]
     private new Renderer renderer;
@@ -47,10 +44,12 @@ public class ChargeEnemy : Enemy
 
         LookAtPlayer();
 
-        ///Attack code here
-        StartCoroutine(PrepareCharge(2f));
-        ///End of attack code  
-        
+        if (playerIsInFront)
+        {
+            ///Attack code here
+            StartCoroutine(PrepareCharge(2f));
+            ///End of attack code 
+        }
     }
 
     IEnumerator PrepareCharge(float time)

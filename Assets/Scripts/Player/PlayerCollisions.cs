@@ -12,6 +12,9 @@ public class PlayerCollisions : MonoBehaviour
     [SerializeField]
     GameObject sphere;
 
+    [SerializeField]
+    PlayerHealthStats healthStats;
+
     private bool playerIsInvulnerable;
 
     void Start()
@@ -29,9 +32,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.transform.CompareTag("Enemy"))
         {
-            Debug.Log("Collision with an enemy");
+            //Debug.Log("Collision with an enemy");
             PushPlayer(collision.contacts[0].point, 15f);
-   
         }
     }
 
@@ -41,20 +43,33 @@ public class PlayerCollisions : MonoBehaviour
 
         if (other.transform.CompareTag("Bullet"))
         {
-            Debug.Log("Hit by Bullet");
+            //Debug.Log("Hit by Bullet");
             Destroy(other.gameObject);
-            StartCoroutine(DamageTaken(0.1f));
+            StartCoroutine(DamageTaken(0.1f, 0.5f, 0));
         }
         else if (other.transform.CompareTag("Enemy"))
         {
-            Debug.Log("Collision with an enemy");
-            StartCoroutine(DamageTaken(0.4f));
+            //Debug.Log("Collision with an enemy");
+            float damage = other.GetType() == typeof(ChargeEnemy) ? 2f : 1f;
+            //Debug.Log("You take: " + damage + " damage");
+            StartCoroutine(DamageTaken(0.4f, damage, 0));
             PushPlayer(other.transform.position, 400f);
         }
         else if (other.transform.CompareTag("Laser"))
         {
-            Debug.Log("Hit by Laser");
-            StartCoroutine(DamageTaken(0.1f));
+            //Debug.Log("Hit by Laser");
+            StartCoroutine(DamageTaken(0.1f, 2f, 0));
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (playerIsInvulnerable) return;
+
+        if (other.transform.CompareTag("Laser"))
+        {
+            //Debug.Log("Move out of the Laser's beam");
+            StartCoroutine(DamageTaken(0.1f, 2f, 0.25f));
         }
     }
 
@@ -71,9 +86,11 @@ public class PlayerCollisions : MonoBehaviour
         playerRb.AddForce(dir * force);
     }
 
-    IEnumerator DamageTaken(float time)
+    IEnumerator DamageTaken(float time, float damage, float extraTime)
     {
         playerIsInvulnerable = true;
+
+        healthStats.TakeDamage(damage);
 
         StartCoroutine(PlayerCannotMoveForTime(time));
 
@@ -84,6 +101,8 @@ public class PlayerCollisions : MonoBehaviour
             sphere.SetActive(false);
             yield return new WaitForSeconds(0.05f);
         }
+        if (extraTime != 0)
+            yield return new WaitForSeconds(extraTime);
         playerIsInvulnerable = false;
     }
 

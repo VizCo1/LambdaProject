@@ -8,11 +8,9 @@ public class PlayerSword : MonoBehaviour
     const int MIN_SPEED = 500;
     const int MAX_SPEED = 750;
 
-
     float timeStart = 0; 
 
     private PlayerInputActions playerInputActions;
-    //private Rigidbody rb;
 
     [SerializeField] private Transform player;
     [SerializeField] private TrailRenderer[] trailRenderers;
@@ -32,6 +30,9 @@ public class PlayerSword : MonoBehaviour
     private Material redGlow;
     [SerializeField]
     private Material blueGlow;
+
+    [SerializeField]
+    private float damage;
 
     void Awake()
     {
@@ -151,6 +152,19 @@ public class PlayerSword : MonoBehaviour
             twoSwords = true;
             swords[1].SetActive(true);
             gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            enemy.health -= damage;
+            if (enemy.health <= 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 }
