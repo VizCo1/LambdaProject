@@ -40,8 +40,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform rayCastTransform;
 
+    [SerializeField]
+    protected ParticleSystem takeDamageVFX;
+    [SerializeField]
+    protected ParticleSystem healVFX;
+
+    private bool isInvulnerable;
+
     protected virtual void Awake()
     {
+        isInvulnerable = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -170,8 +178,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        toInvulnerable();
+
         Debug.Log("Enemy takes damage");
+
         health -= damageAmount;
+        takeDamageVFX.Play();
 
         if (health <= 0)
         {
@@ -181,7 +193,27 @@ public class Enemy : MonoBehaviour
 
     public void Heal(float healingAmount)
     {
+        toInvulnerable();
+
         Debug.Log("Enemy is healing");
+
         health = health + healingAmount > maxHealth ? maxHealth : health + healingAmount;
+        healVFX.Play();
+    }
+
+    private void toInvulnerable()
+    {
+        isInvulnerable = true;
+        Invoke(nameof(toVulnerable), 0.35f);
+    }
+
+    private void toVulnerable()
+    {
+        isInvulnerable = false;
+    }
+
+    public bool isEnemInvulnerable()
+    {
+        return isInvulnerable;
     }
 }

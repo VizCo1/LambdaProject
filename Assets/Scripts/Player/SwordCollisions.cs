@@ -25,21 +25,24 @@ public class SwordCollisions : MonoBehaviour
         damage = 1f;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
+
+            if (enemy.isEnemInvulnerable()) return;
+
             if (enemy.isEnemyBlue)
             {
-                if (isColorBlue)
+                if (!isColorBlue)
                     enemy.TakeDamage(damage);
                 else
                     enemy.Heal(damage);
             }
             else if (!enemy.isEnemyBlue)
             {
-                if (!isColorBlue)
+                if (isColorBlue)
                     enemy.TakeDamage(damage);
                 else
                     enemy.Heal(damage);
