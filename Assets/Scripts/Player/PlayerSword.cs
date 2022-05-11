@@ -31,9 +31,6 @@ public class PlayerSword : MonoBehaviour
     [SerializeField]
     private Material blueGlow;
 
-    [SerializeField]
-    private float damage;
-
     void Awake()
     {
         redColor = Color.red;
@@ -115,6 +112,7 @@ public class PlayerSword : MonoBehaviour
 
     void ChangeSwordsColor(Material glow, Color color)
     {
+
         for (int i = 0; i < swords.Length; i++)
         {
             swords[i].transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = glow;
@@ -152,19 +150,6 @@ public class PlayerSword : MonoBehaviour
             twoSwords = true;
             swords[1].SetActive(true);
             gameObject.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.CompareTag("Enemy"))
-        {
-            Enemy enemy = other.GetComponent<Enemy>();
-            enemy.health -= damage;
-            if (enemy.health <= 0)
-            {
-                Destroy(other.gameObject);
-            }
         }
     }
 }

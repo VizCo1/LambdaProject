@@ -5482,6 +5482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a03dc00919ac24bb7a10ac6352c5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemyBlue: 1
   rotationSpeed: 2.5
   whatIsGround:
     serializedVersion: 2
@@ -5489,7 +5490,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8192
-  health: 0
   walkPointRange: 10
   timeBetweenAttacks: 2
   sightRange: 9

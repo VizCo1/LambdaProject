@@ -17,7 +17,8 @@ public class MultipleShooterEnemy : Enemy
     protected override void Awake()
     {
         base.Awake();
-        base.health = 100;
+        health = 5;
+        maxHealth = health;
 
         leftSide = Random.Range(0, 1) > 0.5f ? true : false;
     }

@@ -193,6 +193,54 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SwordCollisions"",
+            ""id"": ""b1c6cd20-2c89-4c7f-b02c-641d97401a86"",
+            ""actions"": [
+                {
+                    ""name"": ""ColorIsRed"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee6b6e4d-cf79-4a6c-ac37-36d54826dc60"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ColorIsBlue"",
+                    ""type"": ""Button"",
+                    ""id"": ""607b7c41-9554-4914-b325-d67ea5e3337b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3b2377f3-519c-4c41-9149-2de443e24510"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ColorIsRed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a56db193-13c0-4f63-b961-d4e5c8a9e450"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ColorIsBlue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -229,6 +277,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_ShowCompleteMinimap = m_UI.FindAction("ShowCompleteMinimap", throwIfNotFound: true);
+        // SwordCollisions
+        m_SwordCollisions = asset.FindActionMap("SwordCollisions", throwIfNotFound: true);
+        m_SwordCollisions_ColorIsRed = m_SwordCollisions.FindAction("ColorIsRed", throwIfNotFound: true);
+        m_SwordCollisions_ColorIsBlue = m_SwordCollisions.FindAction("ColorIsBlue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -374,6 +426,47 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // SwordCollisions
+    private readonly InputActionMap m_SwordCollisions;
+    private ISwordCollisionsActions m_SwordCollisionsActionsCallbackInterface;
+    private readonly InputAction m_SwordCollisions_ColorIsRed;
+    private readonly InputAction m_SwordCollisions_ColorIsBlue;
+    public struct SwordCollisionsActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public SwordCollisionsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ColorIsRed => m_Wrapper.m_SwordCollisions_ColorIsRed;
+        public InputAction @ColorIsBlue => m_Wrapper.m_SwordCollisions_ColorIsBlue;
+        public InputActionMap Get() { return m_Wrapper.m_SwordCollisions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SwordCollisionsActions set) { return set.Get(); }
+        public void SetCallbacks(ISwordCollisionsActions instance)
+        {
+            if (m_Wrapper.m_SwordCollisionsActionsCallbackInterface != null)
+            {
+                @ColorIsRed.started -= m_Wrapper.m_SwordCollisionsActionsCallbackInterface.OnColorIsRed;
+                @ColorIsRed.performed -= m_Wrapper.m_SwordCollisionsActionsCallbackInterface.OnColorIsRed;
+                @ColorIsRed.canceled -= m_Wrapper.m_SwordCollisionsActionsCallbackInterface.OnColorIsRed;
+                @ColorIsBlue.started -= m_Wrapper.m_SwordCollisionsActionsCallbackInterface.OnColorIsBlue;
+                @ColorIsBlue.performed -= m_Wrapper.m_SwordCollisionsActionsCallbackInterface.OnColorIsBlue;
+                @ColorIsBlue.canceled -= m_Wrapper.m_SwordCollisionsActionsCallbackInterface.OnColorIsBlue;
+            }
+            m_Wrapper.m_SwordCollisionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ColorIsRed.started += instance.OnColorIsRed;
+                @ColorIsRed.performed += instance.OnColorIsRed;
+                @ColorIsRed.canceled += instance.OnColorIsRed;
+                @ColorIsBlue.started += instance.OnColorIsBlue;
+                @ColorIsBlue.performed += instance.OnColorIsBlue;
+                @ColorIsBlue.canceled += instance.OnColorIsBlue;
+            }
+        }
+    }
+    public SwordCollisionsActions @SwordCollisions => new SwordCollisionsActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -402,5 +495,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnShowCompleteMinimap(InputAction.CallbackContext context);
+    }
+    public interface ISwordCollisionsActions
+    {
+        void OnColorIsRed(InputAction.CallbackContext context);
+        void OnColorIsBlue(InputAction.CallbackContext context);
     }
 }

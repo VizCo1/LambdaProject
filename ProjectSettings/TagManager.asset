@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - Enemy
   - Laser
+  - Sword
   layers:
   - Default
   - TransparentFX

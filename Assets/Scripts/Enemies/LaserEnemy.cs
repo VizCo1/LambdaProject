@@ -23,7 +23,8 @@ public class LaserEnemy : Enemy
     protected override void Awake()
     {
         base.Awake();
-        base.health = 100;
+        health = 5;
+        maxHealth = health;
         reloading = false;
         laserDuration = laser.GetFloat("Duration");
         laser.Stop();

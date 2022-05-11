@@ -16,7 +16,8 @@ public class ChargeEnemy : Enemy
     protected override void Awake()
     {
         base.Awake();
-        base.health = 100;
+        health = 2;
+        maxHealth = health;
 
         coroutineChargingIsActive = false;
 

@@ -528,8 +528,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9124609725508736839}
   - component: {fileID: 9124609725511604071}
+  - component: {fileID: 2745921779882359606}
   - component: {fileID: 9124609725510505895}
   - component: {fileID: 4042638997458941251}
+  - component: {fileID: 7508821882755664449}
   m_Layer: 8
   m_Name: Sword
   m_TagString: Untagged
@@ -564,6 +566,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9124609725508504423}
   m_Mesh: {fileID: 4300000, guid: 5dcae31d8c9fdea4c8ae0649cb922f4c, type: 3}
+--- !u!114 &2745921779882359606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124609725508504423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704265b88fa42654fb0c112357b5141d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &9124609725510505895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -620,3 +634,19 @@ CapsuleCollider:
   m_Height: 1.1882803
   m_Direction: 1
   m_Center: {x: -0.000026289374, y: 0.68072116, z: -0.0006383881}
+--- !u!54 &7508821882755664449
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124609725508504423}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1

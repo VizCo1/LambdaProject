@@ -13,7 +13,8 @@ public class SingleShooterEnemy : Enemy
     protected override void Awake()
     {
         base.Awake();
-        base.health = 100;
+        health = 3;
+        maxHealth = health;
     }
 
     protected override void LaunchAttack()

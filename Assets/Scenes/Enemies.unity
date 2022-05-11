@@ -2029,9 +2029,9 @@ PrefabInstance:
       propertyPath: completeMinimap
       value: 
       objectReference: {fileID: 1766883129}
-    - target: {fileID: 773339462919056477, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
+    - target: {fileID: 5260557001569668599, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
+      propertyPath: isSwordBlue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6269133037332478330, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_Name
@@ -2079,10 +2079,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6269133037332478331, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6903582780146620834, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2476,10 +2472,6 @@ PrefabInstance:
     - target: {fileID: 8714211037813784603, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
       propertyPath: m_Name
       value: BlueSingleShootingEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8714211037813784603, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8714211037813784676, guid: d6aa3201529d01142b087a72f978bbb5, type: 3}
       propertyPath: m_RootOrder

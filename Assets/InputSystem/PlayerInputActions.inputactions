@@ -171,6 +171,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SwordCollisions",
+            "id": "b1c6cd20-2c89-4c7f-b02c-641d97401a86",
+            "actions": [
+                {
+                    "name": "ColorIsRed",
+                    "type": "Button",
+                    "id": "ee6b6e4d-cf79-4a6c-ac37-36d54826dc60",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ColorIsBlue",
+                    "type": "Button",
+                    "id": "607b7c41-9554-4914-b325-d67ea5e3337b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3b2377f3-519c-4c41-9149-2de443e24510",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ColorIsRed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a56db193-13c0-4f63-b961-d4e5c8a9e450",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ColorIsBlue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

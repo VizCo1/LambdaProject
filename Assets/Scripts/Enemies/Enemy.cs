@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
 
     protected Transform player;
 
+    public bool isEnemyBlue;
+
     [SerializeField]
     protected float rotationSpeed;
     protected bool playerIsInFront;
@@ -16,7 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected LayerMask whatIsGround, whatIsPlayer;
 
-    public float health;
+    protected float health;
+    protected float maxHealth;
 
     //Patroling
     protected Vector3 walkPoint;
@@ -46,8 +49,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Debug.Log("Enemy health = " + health);
-
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -63,7 +64,7 @@ public class Enemy : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayCastTransform.position, transform.forward, out hit, Mathf.Infinity))
         {
-            Debug.Log(hit.transform.tag);
+            //Debug.Log(hit.transform.tag);
             if (hit.transform.CompareTag("Player"))
             {
                 playerIsInFront = true;
@@ -165,5 +166,22 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        Debug.Log("Enemy takes damage");
+        health -= damageAmount;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Heal(float healingAmount)
+    {
+        Debug.Log("Enemy is healing");
+        health = health + healingAmount > maxHealth ? maxHealth : health + healingAmount;
     }
 }
