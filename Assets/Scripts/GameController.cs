@@ -12,6 +12,15 @@ public class GameController : MonoBehaviour
 
     private PlayerMove playerMove;
 
+    [SerializeField]
+    private PlayerTracker wall;
+
+    private void Awake()
+    {
+        Debug.Log("Hola");
+        wall.GetPlayerTransform(player.transform);
+    }
+
     void Start()
     {
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();

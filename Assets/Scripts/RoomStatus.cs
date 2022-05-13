@@ -49,6 +49,4 @@ public class RoomStatus : MonoBehaviour
 
         yield return null;
     }
-
-    // Cuando se muere un enemigo se llama a una funcion
 }

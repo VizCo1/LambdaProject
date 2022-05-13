@@ -179,6 +179,10 @@ PrefabInstance:
       value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 2111980364267887883, guid: 4a0c6055317481640aafd1edaf431a19, type: 3}
+      propertyPath: isEnemyBlue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111980364267887883, guid: 4a0c6055317481640aafd1edaf431a19, type: 3}
       propertyPath: dissolveEnemy
       value: 
       objectReference: {fileID: 4227526358495621690}

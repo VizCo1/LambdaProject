@@ -3078,7 +3078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4987731872317935750, guid: 638b1631649c52b45a6ed650fbc9e5d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4987731872317935750, guid: 638b1631649c52b45a6ed650fbc9e5d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3130,9 +3130,21 @@ PrefabInstance:
       propertyPath: completeMinimap
       value: 
       objectReference: {fileID: 1766883129}
+    - target: {fileID: 367396132649212507, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121043998921692556, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6269133037332478330, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269133037332478330, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6269133037332478331, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
       propertyPath: m_RootOrder

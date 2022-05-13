@@ -205,6 +205,7 @@ MonoBehaviour:
   rayCastTransform: {fileID: 3147732676764109986}
   takeDamageVFX: {fileID: 4064821634116030420}
   healVFX: {fileID: 2247801428429051677}
+  dissolveEnemy: {fileID: 0}
   renderer: {fileID: 2639417063499146274}
 --- !u!195 &1770638699779874110
 NavMeshAgent:
@@ -738,7 +739,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1796391064301074, guid: 07428cfeb07f41144b70e1d7145d2ad3, type: 3}
       propertyPath: m_Name
-      value: Skull0ClosedD
+      value: ChargeEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4954374104785192, guid: 07428cfeb07f41144b70e1d7145d2ad3, type: 3}
       propertyPath: m_RootOrder

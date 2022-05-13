@@ -30,7 +30,6 @@ public class DungeonGenerator : MonoBehaviour
 
             return 0;
         }
-
     }
 
     public Vector2Int size;
