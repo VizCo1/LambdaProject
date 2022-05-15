@@ -44,7 +44,7 @@ public class RoomStatus : MonoBehaviour
             Debug.Log("You killed every enemy");
             doorsAreDown = false;
             gameController.GetRespawnPosition(transform.position + new Vector3(0, 0.5f, 0));
-            gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
+            //gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
             StartCoroutine(ElevateDoors(limit));
         }
     }
@@ -75,6 +75,7 @@ public class RoomStatus : MonoBehaviour
         if (enemies.Length != 0 && other.CompareTag("Player"))
         {
             enemies[enemyPool].SetActive(true);
+            gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
         }
     }
 }
