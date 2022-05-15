@@ -92,4 +92,9 @@ public class PlayerMove : MonoBehaviour
 
         dashIsReady = true;
     }
+
+    public Vector3 GetInputVector()
+    {
+        return inputVector;
+    }
 }

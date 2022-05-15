@@ -5,28 +5,48 @@ using UnityEngine;
 public class RoomStatus : MonoBehaviour
 {
     [SerializeField]
-    Enemy[] enemies;
+    private GameObject[] enemies;
+    int enemyPool;
 
     [SerializeField]
-    GameObject portalPlatforms;
+    private GameObject portalPlatforms;
     public float limit;
 
-    int numberOfEnemies;
+    static private GameController gameController;
 
-    bool isRoomCompleted;
+    private bool doorsAreDown;
 
     void Awake()
     {
-        isRoomCompleted = false;
-        numberOfEnemies = enemies.Length;
-        //numberOfEnemies = 0;
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        if (numberOfEnemies == 0) StartCoroutine(ElevateDoors(limit)); 
+        doorsAreDown = true;
+        //isRoomCompleted = false;
+
+        if (enemies.Length == 0)
+        {
+            Debug.Log("No hay enemigos");
+            doorsAreDown = false;
+            StartCoroutine(ElevateDoors(limit));
+            gameController.GetRespawnPosition(new Vector3(0, 0.5f, 0));
+        }
+        else 
+        {
+            enemyPool = Random.Range(0, enemies.Length);
+            //enemies[enemyPool].SetActive(true);
+        }
     }
 
-    void CheckEnemiesLeft()
+    private void Update()
     {
-        
+        if (doorsAreDown && enemies[enemyPool].transform.childCount == 0 )
+        {
+            Debug.Log("You killed every enemy");
+            doorsAreDown = false;
+            gameController.GetRespawnPosition(transform.position + new Vector3(0, 0.5f, 0));
+            gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
+            StartCoroutine(ElevateDoors(limit));
+        }
     }
 
     IEnumerator ElevateDoors(float limit)
@@ -34,7 +54,7 @@ public class RoomStatus : MonoBehaviour
         while (portalPlatforms.transform.position.y < limit) 
         {
             portalPlatforms.transform.position = Vector3.MoveTowards(portalPlatforms.transform.position, 
-                new Vector3(portalPlatforms.transform.position.x, limit, portalPlatforms.transform.position.z), 4f * Time.deltaTime);
+                new Vector3(portalPlatforms.transform.position.x, limit, portalPlatforms.transform.position.z), 8f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
@@ -48,5 +68,13 @@ public class RoomStatus : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (enemies.Length != 0 && other.CompareTag("Player"))
+        {
+            enemies[enemyPool].SetActive(true);
+        }
     }
 }

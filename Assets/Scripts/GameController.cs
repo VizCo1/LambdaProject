@@ -11,19 +11,16 @@ public class GameController : MonoBehaviour
     private GameObject player;
 
     private PlayerMove playerMove;
+    private PlayerHealthStats playerHealthStats;
+    //private Rigidbody playerRb;
 
-    [SerializeField]
-    private PlayerTracker wall;
-
-    private void Awake()
-    {
-        Debug.Log("Hola");
-        wall.GetPlayerTransform(player.transform);
-    }
+    Vector3 respawnPosition;
 
     void Start()
     {
-        playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
+        playerMove = player.GetComponent<PlayerMove>();
+        playerHealthStats = player.GetComponentInChildren<PlayerHealthStats>();
+        //playerRb = player.GetComponent<Rigidbody>();
     }
 
     public IEnumerator ManageTransitionCanvas()
@@ -45,5 +42,37 @@ public class GameController : MonoBehaviour
     public void MovePlayerToNextRoom(Vector3 nextPosition)
     {
         player.transform.position = nextPosition;
+    }
+
+    public void GetRespawnPosition(Vector3 position)
+    {
+        respawnPosition = position;
+    }
+
+    public void PlayerCannotMove()
+    {
+        playerMove.canMove = false;
+    }
+    /*
+    public void PushPlayer()
+    {
+        float force;
+        // playerRb.gameObject.transform.position
+        Vector3 dir = playerMove.GetInputVector();
+        if (dir.magnitude < 0.2) force = 1500;
+        else force = 750;
+        Debug.Log("Force: " + force);
+        playerRb.AddForce(dir * force);
+    }
+    */
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            player.transform.position = respawnPosition;
+            playerHealthStats.TakeDamage(1);
+            playerMove.canMove = true;
+        }
     }
 }

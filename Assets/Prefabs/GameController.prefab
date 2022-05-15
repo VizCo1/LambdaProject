@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4502113262889471453}
   - component: {fileID: 4502113262889471452}
+  - component: {fileID: 7978714351555978601}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -44,4 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bb67894f1c2934c9f92ecbdfbd0e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackImageCanvas: {fileID: 0}
+  minimapCamera: {fileID: 0}
+  player: {fileID: 0}
+  wall: {fileID: 0}
+--- !u!65 &7978714351555978601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502113262889471454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 1, z: 50}
+  m_Center: {x: 0, y: 0, z: 0}

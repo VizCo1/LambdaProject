@@ -51,7 +51,7 @@ public class DissolveEnemy : MonoBehaviour
 
             //Debug.Log("NEW value: " + dissolveMaterials[i].GetFloat("_Dissolve"));
 
-            if (dissolveMaterials[i].GetFloat("_Dissolve") >= 0.99f)
+            if (dissolveMaterials[i].GetFloat("_Dissolve") >= 0.9f)
             {
                 Destroy(dissolve);
                 Destroy(gameObject);

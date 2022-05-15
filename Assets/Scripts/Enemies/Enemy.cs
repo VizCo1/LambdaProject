@@ -69,10 +69,10 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        Debug.DrawLine(rayCastTransform.position, transform.forward * 20f);
+        Debug.DrawLine(rayCastTransform.position, transform.forward, Color.black);
 
         RaycastHit hit;
-        if (Physics.Raycast(rayCastTransform.position, transform.forward, out hit, 20f))
+        if (Physics.Raycast(rayCastTransform.position, transform.forward, out hit, 4f))
         {
             //Debug.Log(hit.transform.tag);
             if (hit.transform.CompareTag("Player"))
@@ -167,7 +167,6 @@ public class Enemy : MonoBehaviour
         Quaternion initialRotation = transform.rotation;
 
         transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, Time.deltaTime * rotationSpeed);
-        //LookCoroutine = StartCoroutine(LookAt());
     }
 
     private void OnDrawGizmosSelected()

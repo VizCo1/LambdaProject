@@ -23,7 +23,7 @@ public class LaserEnemy : Enemy
     protected override void Awake()
     {
         base.Awake();
-        health = 5;
+        health = 4;
         maxHealth = health;
         reloading = false;
         laserDuration = laser.GetFloat("Duration");
@@ -32,7 +32,7 @@ public class LaserEnemy : Enemy
 
     protected override void Update()
     {
-        Debug.Log("is player in front? " + playerIsInFront);
+        //Debug.Log("is player in front? " + playerIsInFront);
         if (!reloading)
         {
             base.Update();

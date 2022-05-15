@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerTracker : MonoBehaviour
+public class TrackerPlayer : MonoBehaviour
 {
     // Every wall has the same player
     static private Transform player;
@@ -18,9 +18,6 @@ public class PlayerTracker : MonoBehaviour
 
     private void Update()
     {
-        if (player == null) Debug.Log("No tengo player");
-        else Debug.Log("Tengo player");
-
         propBlock.SetVector("_SpherePos", player.position);
         propBlock.SetFloat("_SphereRadius", playerCol.radius);
         renderer.SetPropertyBlock(propBlock);
@@ -28,7 +25,6 @@ public class PlayerTracker : MonoBehaviour
 
     public void GetPlayerTransform(Transform transform)
     {
-        Debug.Log("otra vez hola");
         player = transform;
     }
 }

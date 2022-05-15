@@ -12,6 +12,10 @@ TagManager:
   - Enemy
   - Laser
   - Sword
+  - BasicLevel
+  - LformLevel
+  - RectangleLevel
+  - SquareLevel
   layers:
   - Default
   - TransparentFX

@@ -87,11 +87,11 @@ public class PlayerSword : MonoBehaviour
 
     void SpawnSword(float t)
     {
-        swords[0].transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0.8f, 0.8f, 0.8f), t);
+        swords[0].transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(2, 2, 2), t);
 
-        if (twoSwords) swords[1].transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0.8f, 0.8f, 0.8f), t);
+        if (twoSwords) swords[1].transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(2, 2, 2), t);
 
-        if (transform.localScale == new Vector3(0.8f, 0.8f, 0.8f) && !scaleCompleted)
+        if (transform.localScale == new Vector3(2, 2, 2) && !scaleCompleted)
         {
             scaleCompleted = true;
             timeStart = 0;
