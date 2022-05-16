@@ -60,6 +60,11 @@ public class PlayerCollisions : MonoBehaviour
             //Debug.Log("Hit by Laser");
             StartCoroutine(DamageTaken(0.1f, 2f, 0));
         }
+        else if (other.transform.CompareTag("GiantFoot"))
+        {
+            StartCoroutine(DamageTaken(0.4f, 2f, 0));
+            PushPlayer(other.transform.position, 550f);
+        }
     }
 
     private void OnTriggerStay(Collider other)

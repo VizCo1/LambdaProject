@@ -189,8 +189,16 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Starting dissolving");
-            dissolveEnemy.StartDissolveAction();
-            Destroy(gameObject);
+            if (dissolveEnemy != null)
+            {
+                dissolveEnemy.StartDissolveAction();
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("Giant boss dies");
+                Destroy(gameObject);
+            }
         }
     }
 

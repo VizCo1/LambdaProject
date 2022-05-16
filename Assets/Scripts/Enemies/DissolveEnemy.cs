@@ -53,7 +53,7 @@ public class DissolveEnemy : MonoBehaviour
 
             if (dissolveMaterials[i].GetFloat("_Dissolve") >= 0.9f)
             {
-                Destroy(dissolve);
+                //Destroy(dissolve);
                 Destroy(gameObject);
             }
         }

@@ -637,10 +637,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 199805873}
     m_Modifications:
-    - target: {fileID: 5453942921836223289, guid: 4957caaaddec4cc4483965846cd17c68, type: 3}
-      propertyPath: orthographic size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5453942921836223291, guid: 4957caaaddec4cc4483965846cd17c68, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -880,18 +876,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 312866235971581943}
-    - target: {fileID: 575076609196113782, guid: f88428cdf53525642a09464ff4726bc6, type: 3}
-      propertyPath: m_Lens.FarClipPlane
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 575076609196113782, guid: f88428cdf53525642a09464ff4726bc6, type: 3}
-      propertyPath: m_Lens.m_SensorSize.x
-      value: 2.211587
-      objectReference: {fileID: 0}
-    - target: {fileID: 575076609196113782, guid: f88428cdf53525642a09464ff4726bc6, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 575076609196113783, guid: f88428cdf53525642a09464ff4726bc6, type: 3}
       propertyPath: m_RootOrder
       value: 2

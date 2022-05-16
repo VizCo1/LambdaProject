@@ -12,10 +12,8 @@ TagManager:
   - Enemy
   - Laser
   - Sword
-  - BasicLevel
-  - LformLevel
-  - RectangleLevel
-  - SquareLevel
+  - GiantFoot
+  - SpecialWaypoint
   layers:
   - Default
   - TransparentFX
@@ -33,8 +31,8 @@ TagManager:
   - Player
   - PlayerCoreHitter
   - Enemy
-  - 
-  - 
+  - SpecialAttack
+  - CoreCollider
   - 
   - 
   - 
