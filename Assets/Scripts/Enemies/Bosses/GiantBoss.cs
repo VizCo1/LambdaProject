@@ -24,6 +24,8 @@ public class GiantBoss : Enemy
     private ParticleSystem specialAttackParticles02;
     [SerializeField]
     private Transform rightHandBone;
+    [SerializeField]
+    private GameObject specialAttack;
 
     [SerializeField]
     Transform waypointSpecialAttack;
@@ -111,7 +113,7 @@ public class GiantBoss : Enemy
         }
         else if (destinationReached)
         {
-            agent.SetDestination(transform.position);
+            //agent.SetDestination(transform.position);
             Debug.Log("SPECIAL ATTACK ANIMATION");
             anim.SetBool("SpecialAttack", true);
 
@@ -212,7 +214,7 @@ public class GiantBoss : Enemy
 
     private void LaunchMagicAttack()
     {
-
+        
     }
 
     public void OnSpecialAttackFinished()
