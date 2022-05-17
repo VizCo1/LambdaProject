@@ -5,52 +5,59 @@ using UnityEngine;
 public class GiantSpecialAttack : MonoBehaviour
 {
     [SerializeField]
-    private GameObject particles;
+    private ParticleSystem particles;
+    [SerializeField]
+    private BoxCollider damagesPlayer;
     private float scalingSpeed;
+
+    private int numberOfCollisions;
 
     void Start()
     {
-        scalingSpeed = 10f;
+        numberOfCollisions = 0;
+        scalingSpeed = 20f;
         StartCoroutine(ScaleBalls());
-        StartCoroutine(DestroyAfterTime(this.gameObject, 8f));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator ScaleBalls()
     {
         float scale;
-
         while(true)
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < transform.childCount - 1; i++)
             {
                 Transform ball = transform.GetChild(i);
                 scale = Mathf.Lerp(ball.localScale.x, 1, Time.deltaTime * scalingSpeed);
                 ball.localScale = new Vector3(scale, scale, scale);
             }
             if (transform.GetChild(0).localScale.magnitude >= new Vector3(0.98f, 0.98f, 0.98f).magnitude) break;
+            yield return new WaitForSeconds(0.05f);
         }
-
-        yield return null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("SpecialAttack"))
         {
-            GameObject gameObject = Instantiate(particles, new Vector3 (other.transform.position.x, 0.3f, other.transform.position.z), Quaternion.identity);
-            StartCoroutine(DestroyAfterTime(gameObject, 1.7f));
+            numberOfCollisions++;
+
+            //Debug.Log("Collision with bombs");
+            ParticleSystem particleSystem = Instantiate(particles, new Vector3 (other.transform.position.x, 0.3f, other.transform.position.z), Quaternion.identity);
+            particleSystem.Play();
+ 
+            StartCoroutine(DestroyImmediateAfterTime(particleSystem.gameObject, 1f));
+
+            if (numberOfCollisions == 16)
+            {
+                damagesPlayer.enabled = true;
+                Destroy(gameObject, 0.25f);
+            }
         }
     }
 
-    IEnumerator DestroyAfterTime(GameObject particles, float time)
+    IEnumerator DestroyImmediateAfterTime(GameObject gameObject, float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(particles);
+        DestroyImmediate(gameObject, true);
     }
 }

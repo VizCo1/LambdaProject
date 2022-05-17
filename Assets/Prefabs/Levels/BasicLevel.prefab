@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 1954108360512858097}
   m_Layer: 0
   m_Name: BasicLevel
-  m_TagString: BasicLevel
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,14 +8,7 @@ public class RoomMinimap : MonoBehaviour
 
     void Awake()
     {
-
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)

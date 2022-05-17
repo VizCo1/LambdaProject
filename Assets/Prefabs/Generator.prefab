@@ -59,9 +59,13 @@ MonoBehaviour:
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 100, y: 100}
     obligatory: 0
-  - room: {fileID: 540292429897445764, guid: 2db7b50d922e7ab4286a014f30295b05, type: 3}
+  - room: {fileID: 7197110749392902477, guid: 2db7b50d922e7ab4286a014f30295b05, type: 3}
     minPosition: {x: 0, y: 2}
     maxPosition: {x: 100, y: 100}
     obligatory: 0
+  - room: {fileID: 4185740435332120223, guid: 01c6f37affeaec7479d92e464f177dce, type: 3}
+    minPosition: {x: 12, y: 4}
+    maxPosition: {x: 12, y: 4}
+    obligatory: 1
   offset: {x: 100, y: 100}
   minimap: {fileID: 0}

@@ -11,12 +11,22 @@ public class DissolveEnemy : MonoBehaviour
 
     private bool canDissolve;
     private Material[] dissolveMaterials;
+    public bool isThisEnemyABoss;
     
     void Start()
     {
         canDissolve = false;
-        dissolveMaterials = dissolve.GetComponent<MeshRenderer>().materials;
-        dissolve.SetActive(false);
+        if (alive != null)
+        {
+            dissolveMaterials = dissolve.GetComponent<MeshRenderer>().materials;
+            dissolve.SetActive(false);
+            isThisEnemyABoss = false;
+        }
+        else
+        {
+            dissolveMaterials = dissolve.GetComponent<SkinnedMeshRenderer>().materials;
+            isThisEnemyABoss = true;
+        }
     }
 
     void Update()
@@ -29,13 +39,14 @@ public class DissolveEnemy : MonoBehaviour
     {
         canDissolve = true;
 
-        dissolve.transform.position = new Vector3(alive.transform.position.x, 0.5f, alive.transform.position.z);
-        dissolve.transform.rotation = alive.transform.GetChild(0).rotation;
-
-        alive.SetActive(false);
-
-        dissolve.SetActive(true);
-
+        if (!isThisEnemyABoss)
+        {
+            dissolve.transform.position = new Vector3(alive.transform.position.x, 0.5f, alive.transform.position.z);
+            dissolve.transform.rotation = alive.transform.GetChild(0).rotation;
+ 
+            alive.SetActive(false);
+            dissolve.SetActive(true);
+        }   
     }
 
     private void Dissolve(float speed)
@@ -54,7 +65,10 @@ public class DissolveEnemy : MonoBehaviour
             if (dissolveMaterials[i].GetFloat("_Dissolve") >= 0.9f)
             {
                 //Destroy(dissolve);
-                Destroy(gameObject);
+                if (!isThisEnemyABoss)
+                    Destroy(gameObject);
+                else
+                    Destroy(transform.parent.parent.gameObject);
             }
         }
 

@@ -36,13 +36,13 @@ public class PlayerUI : MonoBehaviour
     void ShowCompleteMinimap()
     {
         StartCoroutine(IncreaseImageAlpha());
-        StartCoroutine(IncreaseBorderAlpha());
+        //StartCoroutine(IncreaseBorderAlpha());
     }
 
     void HideCompleteMinimap()
     {
         StartCoroutine(DecreaseImageAlpha());
-        StartCoroutine(DecreaseBorderAlpha());        
+        //StartCoroutine(DecreaseBorderAlpha());        
     }
 
     IEnumerator IncreaseImageAlpha()

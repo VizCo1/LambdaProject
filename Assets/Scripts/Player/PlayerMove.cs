@@ -43,6 +43,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Can the player move? " + canMove);
         RotateMainModel();
     }
 

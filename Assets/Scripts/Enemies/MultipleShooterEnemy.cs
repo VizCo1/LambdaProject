@@ -41,14 +41,7 @@ public class MultipleShooterEnemy : Enemy
         Rigidbody rb = Instantiate(projectile, transformPositionToUse, Quaternion.identity).GetComponent<Rigidbody>();
         rb.gameObject.transform.LookAt(player.transform.position);
         rb.AddForce(transform.forward * 8f, ForceMode.Impulse);
-        StartCoroutine(DestroyAfterTime(rb, 5f));
+        Destroy(rb.gameObject, 3.5f);
         //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-    }
-
-    IEnumerator DestroyAfterTime(Rigidbody bulletRb, float time)
-    {
-        GameObject bullet = bulletRb.gameObject;
-        yield return new WaitForSeconds(time);
-        Destroy(bullet);
     }
 }

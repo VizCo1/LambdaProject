@@ -14,13 +14,21 @@ public class GameController : MonoBehaviour
     private PlayerHealthStats playerHealthStats;
     //private Rigidbody playerRb;
 
-    Vector3 respawnPosition;
+    private Vector3 respawnPosition;
+
+    private GameObject actualRoom;
 
     void Start()
     {
         playerMove = player.GetComponent<PlayerMove>();
         playerHealthStats = player.GetComponentInChildren<PlayerHealthStats>();
         //playerRb = player.GetComponent<Rigidbody>();
+    }
+    private void Update()
+    {
+        Debug.DrawLine(player.transform.position, player.transform.up, Color.black);
+        if (actualRoom != null)
+            Debug.Log(actualRoom.name);
     }
 
     public IEnumerator ManageTransitionCanvas()
@@ -42,6 +50,19 @@ public class GameController : MonoBehaviour
     public void MovePlayerToNextRoom(Vector3 nextPosition)
     {
         player.transform.position = nextPosition;
+        RaycastHit hit;
+        if (Physics.Raycast(player.transform.position + Vector3.up* 4, Vector3.up, out hit, 40f))
+        {
+            //Debug.Log(hit.transform.tag);
+            if (hit.transform.CompareTag("ActualRoomHelper"))
+            {
+                actualRoom = hit.transform.parent.gameObject;
+            }
+            else if (hit.transform.CompareTag("Level"))
+            {
+                actualRoom = hit.transform.parent.gameObject;
+            }
+        }
     }
 
     public void GetRespawnPosition(Vector3 position)
@@ -53,18 +74,6 @@ public class GameController : MonoBehaviour
     {
         playerMove.canMove = false;
     }
-    /*
-    public void PushPlayer()
-    {
-        float force;
-        // playerRb.gameObject.transform.position
-        Vector3 dir = playerMove.GetInputVector();
-        if (dir.magnitude < 0.2) force = 1500;
-        else force = 750;
-        Debug.Log("Force: " + force);
-        playerRb.AddForce(dir * force);
-    }
-    */
 
     private void OnCollisionEnter(Collision collision)
     {

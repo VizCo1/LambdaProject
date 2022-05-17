@@ -28,7 +28,13 @@ public class GiantBoss : Enemy
     private GameObject specialAttack;
 
     [SerializeField]
-    Transform waypointSpecialAttack;
+    private ParticleSystem vulnerableParticles;
+    [SerializeField]
+    private BoxCollider vulnerableCollider;
+
+
+    [SerializeField]
+    private Transform waypointSpecialAttack;
 
     private string lastAttack;
 
@@ -44,13 +50,12 @@ public class GiantBoss : Enemy
         agent.updatePosition = false;
         specialAttackInProgress = false;
         destinationReached = false;
-        toSpecialAttack = 1;
+        toSpecialAttack = 3;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        Debug.Log(toSpecialAttack);
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -63,23 +68,16 @@ public class GiantBoss : Enemy
         }
         else if (!playerInAttackRange && !alreadyAttacked)
         {
-            Debug.Log("HERE");
-            //ResetAttack();
             if (lastAttack != null)
                 anim.SetBool(lastAttack, false);
+            if (vulnerableCollider.enabled)
+                vulnerableCollider.enabled = false;
             ChasePlayer();
         }
         else if (playerInAttackRange)
         {
             anim.SetBool("Walking", false);
-            if (toSpecialAttack <= 0)
-            {
-                SpecialAttack();
-            }
-            else
-            {
-                MeleAttack();
-            }
+            MeleAttack();  
         }
         else
         {
@@ -111,17 +109,6 @@ public class GiantBoss : Enemy
         {
             agent.SetDestination(waypointSpecialAttack.position);
         }
-        else if (destinationReached)
-        {
-            //agent.SetDestination(transform.position);
-            Debug.Log("SPECIAL ATTACK ANIMATION");
-            anim.SetBool("SpecialAttack", true);
-
-        }
-        else
-        {
-            
-        }  
     }
 
     protected override void ChasePlayer()
@@ -136,13 +123,13 @@ public class GiantBoss : Enemy
         anim.SetFloat("MeleAttackSpeed", Random.Range(1.5f, 2f));
         if (Random.Range(0, 1f) > 0.5)
         {
-            Debug.Log("Left foot");
+            //Debug.Log("Left foot");
             lastAttack = "LeftFootAttack";
             anim.SetBool(lastAttack, true);
         }
         else
         {
-            Debug.Log("Right foot");
+            //Debug.Log("Right foot");
             lastAttack = "RightFootAttack";
             anim.SetBool(lastAttack, true);
         }
@@ -150,7 +137,6 @@ public class GiantBoss : Enemy
 
     public void RightFootCollision(int a)
     {
-        //Vector3 offset = new Vector3(0, 0, 0.5f);
         if (a == 0)
         {
             rightFootCollider.SetActive(false);
@@ -214,22 +200,38 @@ public class GiantBoss : Enemy
 
     private void LaunchMagicAttack()
     {
-        
+        Instantiate(specialAttack, new Vector3(specialAttack.transform.position.x, 5, specialAttack.transform.position.z), Quaternion.identity);
     }
 
     public void OnSpecialAttackFinished()
     {
+        // Activate particles gameobject
+        vulnerableParticles.gameObject.SetActive(true);
+
         anim.SetBool("SpecialAttack", false);
-        anim.SetBool("Idle", true);
-        // Start the vulnerable animation 
-        // After the vulnerable animation ends --> OnVulnerableFinished() { ResetAttack();  toSpecialAttack = 3;}
-        
+        anim.SetBool("Vulnerable", true);
+    }
+
+    public void OnVulnerableStart()
+    {
+        vulnerableCollider.enabled = true;
+        vulnerableParticles.Play();
     }
 
     public void OnVulnerableFinished()
     {
-        //ResetAttack();
-        //toSpecialAttack = 3;
+        ResetVulnerableState();
+    }
+
+    public void ResetVulnerableState()
+    {
+        anim.SetBool("Vulnerable", false);
+        toSpecialAttack = 3;
+        vulnerableCollider.enabled = false;
+        vulnerableParticles.gameObject.SetActive(false);
+        //vulnerableParticles.gameObject.SetActive(true);
+        destinationReached = false;
+        specialAttackInProgress = false;
     }
 
 
@@ -237,9 +239,29 @@ public class GiantBoss : Enemy
     {
         if (other.CompareTag("SpecialWaypoint"))
         {
-            Debug.Log("Destination Reached");
             destinationReached = true;
+            anim.SetBool("SpecialAttack", true);
             anim.SetBool("Walking", false);
+        }
+    }
+
+    public override void TakeDamage(float damageAmount, bool isSwordBlue)
+    {
+        toInvulnerable();
+
+        Debug.Log("Enemy takes damage");
+
+        health -= damageAmount;
+        if (isSwordBlue) 
+            healVFX.Play(); // Blue effect
+        else
+            takeDamageVFX.Play(); // Red effect
+
+        if (health <= 0)
+        {
+            Debug.Log("Starting dissolving");
+
+            dissolveEnemy.StartDissolveAction();
         }
     }
 

@@ -27,27 +27,37 @@ public class SwordCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
 
-            if (enemy.isEnemInvulnerable()) return;
+            if (enemy.isEnemyInvulnerable()) return;
 
             if (enemy.isEnemyBlue)
             {
                 if (!isColorBlue)
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(damage, false);
                 else
                     enemy.Heal(damage);
             }
             else if (!enemy.isEnemyBlue)
             {
                 if (isColorBlue)
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(damage, false);
                 else
                     enemy.Heal(damage);
             }
          
+        }
+        else if (other.CompareTag("GiantVulnerable"))
+        {
+            GiantBoss giantBoss = other.transform.parent.GetComponent<GiantBoss>();
+
+            if (giantBoss.isEnemyInvulnerable()) return;
+
+            Debug.Log("You damaged the boss");
+            giantBoss.ResetVulnerableState();
+            giantBoss.TakeDamage(damage, isColorBlue);
         }
     }
 }

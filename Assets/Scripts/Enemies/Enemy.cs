@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
     private bool isInvulnerable;
 
     [SerializeField]
-    private DissolveEnemy dissolveEnemy;
+    protected DissolveEnemy dissolveEnemy;
     protected virtual void Awake()
     {
         isInvulnerable = false;
@@ -143,12 +143,6 @@ public class Enemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    protected virtual void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    }
     protected virtual void DestroyEnemy()
     {
         Destroy(gameObject);
@@ -177,7 +171,7 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 
-    public void TakeDamage(float damageAmount)
+    public virtual void TakeDamage(float damageAmount, bool isSwordBlue)
     {
         toInvulnerable();
 
@@ -189,16 +183,10 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Starting dissolving");
-            if (dissolveEnemy != null)
-            {
-                dissolveEnemy.StartDissolveAction();
+
+            dissolveEnemy.StartDissolveAction();
+            if (!dissolveEnemy.isThisEnemyABoss)
                 Destroy(gameObject);
-            }
-            else
-            {
-                Debug.Log("Giant boss dies");
-                Destroy(gameObject);
-            }
         }
     }
 
@@ -212,7 +200,7 @@ public class Enemy : MonoBehaviour
         healVFX.Play();
     }
 
-    private void toInvulnerable()
+    protected void toInvulnerable()
     {
         isInvulnerable = true;
         Invoke(nameof(toVulnerable), 0.35f);
@@ -223,7 +211,7 @@ public class Enemy : MonoBehaviour
         isInvulnerable = false;
     }
 
-    public bool isEnemInvulnerable()
+    public bool isEnemyInvulnerable()
     {
         return isInvulnerable;
     }
