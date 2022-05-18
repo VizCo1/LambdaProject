@@ -23,7 +23,7 @@ public class TransitionController : MonoBehaviour
     {
         playerMove.canMove = false;
         blackImageCanvas.SetActive(true);
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.15f);
         blackImageCanvas.SetActive(false);
         playerMove.canMove = true;
     }

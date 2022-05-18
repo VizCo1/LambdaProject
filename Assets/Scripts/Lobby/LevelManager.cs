@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             transitionController.blackImageCanvas.SetActive(true);
-            SceneManager.LoadScene("Level");
+            SceneManager.LoadSceneAsync("Level");
         }
     }
 }

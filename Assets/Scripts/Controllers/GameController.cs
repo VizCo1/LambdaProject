@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private TransitionController transitionController;
+
     private PlayerMove playerMove;
     private PlayerHealthStats playerHealthStats;
 
@@ -50,6 +53,9 @@ public class GameController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+
+            StartCoroutine(transitionController.ManageTransitionCanvas());
+
             if (actualRoom != null)
             {
                 Transform activeGroupOfEnemies = actualRoom.transform.GetChild(actualRoom.transform.childCount - 1).gameObject.transform.GetChild(enemyGroupNumber);

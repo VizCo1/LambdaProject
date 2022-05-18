@@ -23,6 +23,7 @@ TagManager:
   - LaserEnemy
   - MultipleEnemy
   - SingleEnemy
+  - TransitionController
   layers:
   - Default
   - TransparentFX

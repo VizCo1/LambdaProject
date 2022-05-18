@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GameScenes/Level.unity
     guid: e54da5a7f95e39b468993452ea1f1be9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Enemies.unity
     guid: 14aca2b5a696c354e86888be0ce63958
+  - enabled: 0
+    path: Assets/Scenes/GameScenes/Lobby.unity
+    guid: 49687314719a67f48add9f2af8100c61
   m_configObjects: {}
