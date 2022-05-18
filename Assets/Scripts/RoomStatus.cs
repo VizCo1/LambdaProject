@@ -28,12 +28,11 @@ public class RoomStatus : MonoBehaviour
             Debug.Log("No hay enemigos");
             doorsAreDown = false;
             StartCoroutine(ElevateDoors(limit));
-            gameController.GetRespawnPosition(new Vector3(0, 0.5f, 0));
+            gameController.SetRespawnPosition(new Vector3(0, 0.5f, 0));
         }
         else 
         {
             enemyPool = Random.Range(0, enemies.Length);
-            //enemies[enemyPool].SetActive(true);
         }
     }
 
@@ -43,8 +42,7 @@ public class RoomStatus : MonoBehaviour
         {
             Debug.Log("You killed every enemy");
             doorsAreDown = false;
-            gameController.GetRespawnPosition(transform.position + new Vector3(0, 0.5f, 0));
-            //gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
+            gameController.SetRespawnPosition(transform.position + new Vector3(0, 0.5f, 0));
             StartCoroutine(ElevateDoors(limit));
         }
     }
@@ -72,10 +70,20 @@ public class RoomStatus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enemies.Length != 0 && other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            enemies[enemyPool].SetActive(true);
-            gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
+            if (enemies.Length == 0 || enemies[enemyPool].transform.childCount == 0)
+            {
+                gameController.SetRespawnPosition(transform.position + new Vector3(0, 0.5f, 0));
+                gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
+            }
+            else
+            {
+                enemies[enemyPool].SetActive(true);
+                gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
+                gameController.actualRoom = this.gameObject;
+                gameController.enemyGroupNumber = enemyPool;
+            }
         }
     }
 }

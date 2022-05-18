@@ -44,9 +44,10 @@ public class GiantBoss : Enemy
     private bool destinationReached;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         health = 3;
+        maxHealth = health;
         agent.updatePosition = false;
         specialAttackInProgress = false;
         destinationReached = false;
@@ -56,6 +57,8 @@ public class GiantBoss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
+        Debug.Log("toSpecialAttack: " + toSpecialAttack);
+
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -200,7 +203,7 @@ public class GiantBoss : Enemy
 
     private void LaunchMagicAttack()
     {
-        Instantiate(specialAttack, new Vector3(specialAttack.transform.position.x, 5, specialAttack.transform.position.z), Quaternion.identity);
+        Instantiate(specialAttack, new Vector3(waypointSpecialAttack.transform.position.x - 6, 5, waypointSpecialAttack.transform.position.z - 6), Quaternion.identity);
     }
 
     public void OnSpecialAttackFinished()
@@ -237,7 +240,7 @@ public class GiantBoss : Enemy
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("SpecialWaypoint"))
+        if (other.CompareTag("SpecialWaypoint") && toSpecialAttack == 0)
         {
             destinationReached = true;
             anim.SetBool("SpecialAttack", true);
@@ -263,6 +266,25 @@ public class GiantBoss : Enemy
 
             dissolveEnemy.StartDissolveAction();
         }
+    }
+
+    public override void ResetEnemy()
+    {
+        base.ResetEnemy();
+        anim.SetBool("SpecialAttack", false);
+        anim.SetBool("Walking", false);
+        anim.SetBool("Vulnerable", false);
+        anim.SetBool("LeftFootAttack", false);
+        anim.SetBool("RightFootAttack", false);
+        StopAllCoroutines();
+        health = maxHealth;
+        specialAttackInProgress = false;
+        destinationReached = false;
+        toSpecialAttack = 3;
+        vulnerableCollider.enabled = false;
+        vulnerableParticles.gameObject.SetActive(false);
+        specialAttackParticles01.Stop();
+        specialAttackParticles02.Stop();
     }
 
     private void OnAnimatorMove()

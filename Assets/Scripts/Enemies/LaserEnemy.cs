@@ -94,4 +94,16 @@ public class LaserEnemy : Enemy
             yield return new WaitForSeconds(0.01f);
         }
     }
+
+    public override void ResetEnemy()
+    {
+        base.ResetEnemy();
+        StopAllCoroutines();
+        laser.Stop();
+        reloadingParticles.Stop();
+        //Debug.Log("Reset laser enemy");
+        reloading = false;
+        laserCapsuleCollider.enabled = false;
+        laserCapsuleCollider.height = LASER_COLLIDER_MIN_HEIGHT;
+    }
 }

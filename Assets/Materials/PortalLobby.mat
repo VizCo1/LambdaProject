@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3989496451037871933
+--- !u!114 &-6212294686607969626
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,26 +20,20 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BorderCircle
-  m_Shader: {fileID: -6465566751694194690, guid: 4e744c6c320d36c4b9853f457d29f9b2, type: 3}
-  m_ShaderKeywords: 
+  m_Name: PortalLobby
+  m_Shader: {fileID: -6465566751694194690, guid: b4498a27e4ba338479e8dc3557848712, type: 3}
+  m_ShaderKeywords: _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Base_Map:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Normal_Map:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,10 +58,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _FoamTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -88,19 +78,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_b240d991c38544d6b2387c486a688bfe_Texture_1:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureA:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureB:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -118,82 +96,45 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - BOOLEAN_6C4164AC: 0
-    - Normal_Blend: 0.5
-    - Vector1_BF525535: 1
     - _AlphaClip: 0
-    - _AlphaClipThreshold: 0.46
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudScale: 30
-    - _CloudSpeed: 0.06
-    - _CloudStep: 0.2
-    - _CloudTransparency: 1
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
-    - _DecalMeshBiasType: 0
-    - _DecalMeshDepthBias: 0
-    - _DecalMeshViewBias: 0
-    - _DepthFallOff: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: -0.5
-    - _DistortionAmount: 1
-    - _DistortionScale: 15
-    - _DistortionSpeed: 0.12
-    - _DrawOrder: 0
-    - _DstBlend: 0
+    - _DissolveAmount: 2
+    - _DstBlend: 10
     - _EnvironmentReflections: 1
-    - _FoamAlpha: 0.5
-    - _FoamDepth: 10
-    - _FoamFallOff: 0
-    - _FoamShoreWidth: 0
-    - _FreselPower: 1
-    - _FrostAmount: 0.3
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxDistance: 200
     - _Metallic: 0
-    - _MinDistance: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RevealValue: 0
-    - _Scale: 150
+    - _Scale: 5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 1
-    - _SpeedX: 0.05
-    - _SpeedY: 0.02
-    - _SphereRadius: 0.5
-    - _SrcBlend: 1
-    - _Surface: 0
-    - _TwirlStrenght: 1.24
+    - _Speed: 0.35
+    - _SpeedX: 0.1
+    - _SpeedY: -0.1
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _TwirlStrenght: 10
     - _WorkflowMode: 1
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - Color_58E0201D: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 0.6941177}
-    - _AlphaRemap: {r: -1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CausticsColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.021568628, g: 0, b: 0.00882353, a: 1}
-    - _ColorB: {r: 0, g: 0.72263193, b: 1, a: 0}
+    - _Color: {r: 69.77255, g: 0, b: 113.9451, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FoamSpeed: {r: 0, g: 0, b: 0, a: 0}
-    - _FoamTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _OutsideColor: {r: 0.7433962, g: 1.865364, b: 2, a: 1}
-    - _ShoreColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _SpherePos: {r: 0, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

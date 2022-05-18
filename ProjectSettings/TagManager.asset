@@ -19,6 +19,10 @@ TagManager:
   - GiantVulnerable
   - ActualRoomHelper
   - Level
+  - ChargeEnemy
+  - LaserEnemy
+  - MultipleEnemy
+  - SingleEnemy
   layers:
   - Default
   - TransparentFX

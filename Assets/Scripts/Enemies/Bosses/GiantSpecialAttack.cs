@@ -49,6 +49,7 @@ public class GiantSpecialAttack : MonoBehaviour
 
             if (numberOfCollisions == 16)
             {
+                Debug.Log("Destroying the balls");
                 damagesPlayer.enabled = true;
                 Destroy(gameObject, 0.25f);
             }

@@ -87,4 +87,15 @@ public class ChargeEnemy : Enemy
     {
         rb.AddForce(transform.forward * 75f, ForceMode.Impulse);
     }
+
+    public override void ResetEnemy()
+    {
+        base.ResetEnemy();
+        //Debug.Log("Reset charge enemy");
+        propBlock.SetFloat("_FresnelThreshold", -0.2f);
+        StopCoroutine("PrepareCharge");
+        coroutineChargingIsActive = false;
+        alreadyAttacked = false;
+        coroutineChargingIsActive = false;
+    }
 }

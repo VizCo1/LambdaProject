@@ -11861,6 +11861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GiantBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 4585000547887049799, guid: 010edca2ab6752e4da3b49c206dcfed7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010edca2ab6752e4da3b49c206dcfed7, type: 3}
 --- !u!1001 &6211185862419280876

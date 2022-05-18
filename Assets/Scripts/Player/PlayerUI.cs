@@ -23,7 +23,7 @@ public class PlayerUI : MonoBehaviour
         completeMinimapBorder = completeMinimap.transform.GetChild(1).gameObject.GetComponent<Image>();
         completeMinimapImage = completeMinimap.transform.GetChild(0).GetChild(0).gameObject.GetComponent<RawImage>();
 
-        initialCompleteMinimapBorderColor = completeMinimapBorder.color;
+        //initialCompleteMinimapBorderColor = completeMinimapBorder.color;
         initialCompleteMinimapImageColor = completeMinimapImage.color;
 
         playerInputActions = new PlayerInputActions();
@@ -55,7 +55,7 @@ public class PlayerUI : MonoBehaviour
             yield return new WaitForSeconds(0.025f);
         }
     }
-
+    /*
     IEnumerator IncreaseBorderAlpha()
     {
         Color color = initialCompleteMinimapBorderColor;
@@ -66,6 +66,7 @@ public class PlayerUI : MonoBehaviour
             yield return new WaitForSeconds(0.025f);
         }
     }
+    */
     IEnumerator DecreaseImageAlpha()
     {
         Color color = completeMinimapImage.color;
@@ -77,7 +78,7 @@ public class PlayerUI : MonoBehaviour
         }
         completeMinimapImage.color = initialCompleteMinimapImageColor;
     }
-
+    /*
     IEnumerator DecreaseBorderAlpha()
     {
         Color color = completeMinimapBorder.color;
@@ -89,10 +90,11 @@ public class PlayerUI : MonoBehaviour
         }
         completeMinimapBorder.color = initialCompleteMinimapBorderColor;
     }
+    */
 
     void RestartCompleteMinimapColors()
     {
-        completeMinimapBorder.color = initialCompleteMinimapBorderColor;
+        //completeMinimapBorder.color = initialCompleteMinimapBorderColor;
         completeMinimapImage.color = initialCompleteMinimapImageColor;
     }
 }

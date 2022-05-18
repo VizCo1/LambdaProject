@@ -49,11 +49,22 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     protected DissolveEnemy dissolveEnemy;
+
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+
+
     protected virtual void Awake()
     {
         isInvulnerable = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    protected virtual void Start()
+    {
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -214,5 +225,14 @@ public class Enemy : MonoBehaviour
     public bool isEnemyInvulnerable()
     {
         return isInvulnerable;
+    }
+
+    public virtual void ResetEnemy()
+    {
+        health = maxHealth;
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        alreadyAttacked = false;
+        isInvulnerable = false;
     }
 }

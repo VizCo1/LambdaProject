@@ -12,32 +12,16 @@ public class GameController : MonoBehaviour
 
     private PlayerMove playerMove;
     private PlayerHealthStats playerHealthStats;
-    //private Rigidbody playerRb;
 
     private Vector3 respawnPosition;
 
-    private GameObject actualRoom;
+    public GameObject actualRoom;
+    public int enemyGroupNumber;
 
     void Start()
     {
         playerMove = player.GetComponent<PlayerMove>();
         playerHealthStats = player.GetComponentInChildren<PlayerHealthStats>();
-        //playerRb = player.GetComponent<Rigidbody>();
-    }
-    private void Update()
-    {
-        Debug.DrawLine(player.transform.position, player.transform.up, Color.black);
-        if (actualRoom != null)
-            Debug.Log(actualRoom.name);
-    }
-
-    public IEnumerator ManageTransitionCanvas()
-    {
-        playerMove.canMove = false;
-        //blackImageCanvas.SetActive(true);
-        yield return new WaitForSeconds(0.35f);
-        //blackImageCanvas.SetActive(false);    
-        playerMove.canMove = true;
     }
 
     public void MoveMinimapCamera(Vector3 nextRoomPosition)
@@ -50,22 +34,9 @@ public class GameController : MonoBehaviour
     public void MovePlayerToNextRoom(Vector3 nextPosition)
     {
         player.transform.position = nextPosition;
-        RaycastHit hit;
-        if (Physics.Raycast(player.transform.position + Vector3.up* 4, Vector3.up, out hit, 40f))
-        {
-            //Debug.Log(hit.transform.tag);
-            if (hit.transform.CompareTag("ActualRoomHelper"))
-            {
-                actualRoom = hit.transform.parent.gameObject;
-            }
-            else if (hit.transform.CompareTag("Level"))
-            {
-                actualRoom = hit.transform.parent.gameObject;
-            }
-        }
     }
 
-    public void GetRespawnPosition(Vector3 position)
+    public void SetRespawnPosition(Vector3 position)
     {
         respawnPosition = position;
     }
@@ -79,9 +50,24 @@ public class GameController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+            if (actualRoom != null)
+            {
+                Transform activeGroupOfEnemies = actualRoom.transform.GetChild(actualRoom.transform.childCount - 1).gameObject.transform.GetChild(enemyGroupNumber);
+
+                if (activeGroupOfEnemies.childCount != 0)
+                {
+                    for (int i = 0; i < activeGroupOfEnemies.childCount; i++)
+                    {
+                        Enemy enemy = activeGroupOfEnemies.GetChild(i).GetComponentInChildren<Enemy>();
+                        enemy.ResetEnemy();
+                        activeGroupOfEnemies.gameObject.SetActive(false);
+                    }
+                }
+            }
+
             player.transform.position = respawnPosition;
             playerHealthStats.TakeDamage(1);
-            playerMove.canMove = true;
+            playerMove.canMove = true; 
         }
     }
 }

@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 2974419884483984744}
   m_Layer: 0
   m_Name: RedLaserEnemy
-  m_TagString: Untagged
+  m_TagString: LaserEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: {fileID: 6229720076118703005}
   dissolve: {fileID: 568922490020578233}
+  isThisEnemyABoss: 0
 --- !u!1001 &802870178502508264
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -83,11 +83,6 @@ public class PlayerCollisions : MonoBehaviour
         }
     }
 
-    void PlayerHit()
-    {
-        //StartCoroutine(DamageTaken());
-    }
-
     void PushPlayer(Vector3 collisionPoint, float force)
     {
         // playerRb.gameObject.transform.position

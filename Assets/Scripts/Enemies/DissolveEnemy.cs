@@ -71,7 +71,5 @@ public class DissolveEnemy : MonoBehaviour
                     Destroy(transform.parent.parent.gameObject);
             }
         }
-
-        //value = Mathf.Lerp(dissolve.transform.position)
     }
 }

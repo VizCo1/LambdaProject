@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.22297522, g: 0.82852936, b: 0.7727829, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1443,8 +1443,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7197110749392902476, guid: 2db7b50d922e7ab4286a014f30295b05, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2db7b50d922e7ab4286a014f30295b05, type: 3}
+--- !u!136 &552539404 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1048894340060954914, guid: 25d1f11062eef7b4aa90ac0a7bc3e7b6, type: 3}
+  m_PrefabInstance: {fileID: 312866235971581942}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &575764883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 575076609196113783, guid: f88428cdf53525642a09464ff4726bc6, type: 3}
@@ -2236,6 +2245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 1174172363}
+  playerCol: {fileID: 552539404}
 --- !u!65 &1174172367
 BoxCollider:
   m_ObjectHideFlags: 0

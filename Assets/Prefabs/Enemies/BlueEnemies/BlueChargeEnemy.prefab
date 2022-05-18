@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2684930552815458108}
   m_Layer: 0
   m_Name: BlueChargeEnemy
-  m_TagString: Untagged
+  m_TagString: ChargeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: {fileID: 7439413248741151656}
   dissolve: {fileID: 5838161258417757270}
+  isThisEnemyABoss: 0
 --- !u!1001 &5837563922432127556
 PrefabInstance:
   m_ObjectHideFlags: 0

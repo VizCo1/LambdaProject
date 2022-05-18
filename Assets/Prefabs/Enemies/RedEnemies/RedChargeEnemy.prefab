@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1870487420857747822}
   m_Layer: 0
   m_Name: RedChargeEnemy
-  m_TagString: Untagged
+  m_TagString: ChargeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: {fileID: 7167013509026660058}
   dissolve: {fileID: 6146589428602679588}
+  isThisEnemyABoss: 0
 --- !u!95 &2080602672145487483
 Animator:
   serializedVersion: 4

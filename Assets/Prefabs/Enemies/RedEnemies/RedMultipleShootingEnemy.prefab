@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 9137439768584951270}
   m_Layer: 0
   m_Name: RedMultipleShootingEnemy
-  m_TagString: Untagged
+  m_TagString: MultipleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: {fileID: 137626273795453393}
   dissolve: {fileID: 5812327289548082391}
+  isThisEnemyABoss: 0
 --- !u!1001 &755980625648802081
 PrefabInstance:
   m_ObjectHideFlags: 0
