@@ -46,6 +46,7 @@ public class GiantBoss : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
         health = 3;
         maxHealth = health;
         agent.updatePosition = false;

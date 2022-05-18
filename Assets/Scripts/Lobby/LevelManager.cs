@@ -5,16 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField]
+    private TransitionController transitionController;
 
     [SerializeField]
-    TransitionController transitionController;
+    private bool isLevelScene;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             transitionController.blackImageCanvas.SetActive(true);
-            SceneManager.LoadSceneAsync("Level");
+            if (isLevelScene)
+                SceneManager.LoadSceneAsync("Scenes/GameScenes/Lobby");
+            else
+                SceneManager.LoadSceneAsync("Scenes/GameScenes/Level");
         }
     }
 }

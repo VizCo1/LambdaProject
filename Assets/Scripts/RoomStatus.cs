@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomStatus : MonoBehaviour
 {
+    const int PORTAL_POSITION_CHILD = 5;
+
     [SerializeField]
     private GameObject[] enemies;
     int enemyPool;
@@ -44,6 +46,11 @@ public class RoomStatus : MonoBehaviour
             doorsAreDown = false;
             gameController.SetRespawnPosition(transform.position + new Vector3(0, 0.5f, 0));
             StartCoroutine(ElevateDoors(limit));
+
+            if (enemies.Length == 1)
+            {
+                gameController.MovePortalToPos(transform.GetChild(PORTAL_POSITION_CHILD).position);
+            }
         }
     }
 

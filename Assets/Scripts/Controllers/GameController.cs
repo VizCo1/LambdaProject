@@ -13,6 +13,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private TransitionController transitionController;
 
+    [SerializeField]
+    private GameObject portal;
+
     private PlayerMove playerMove;
     private PlayerHealthStats playerHealthStats;
 
@@ -47,6 +50,12 @@ public class GameController : MonoBehaviour
     public void PlayerCannotMove()
     {
         playerMove.canMove = false;
+    }
+
+    public void MovePortalToPos(Vector3 pos)
+    {
+        portal.transform.position = pos;
+        portal.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision collision)
