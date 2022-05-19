@@ -52,24 +52,24 @@ public class PlayerCollisions : MonoBehaviour
         else if (other.CompareTag("Enemy"))
         {
             //Debug.Log("Collision with an enemy");
-            float damage = other.GetType() == typeof(ChargeEnemy) ? 2f : 1f;
+            //float damage = other.GetType() == typeof(ChargeEnemy) ? 2f : 1f;
             //Debug.Log("You take: " + damage + " damage");
-            StartCoroutine(DamageTaken(0.4f, damage, 0));
+            StartCoroutine(DamageTaken(0.4f, 0.5f, 0));
             PushPlayer(other.transform.position, 400f);
         }
         else if (other.CompareTag("Laser"))
         {
             //Debug.Log("Hit by Laser");
-            StartCoroutine(DamageTaken(0.1f, 2f, 0));
+            StartCoroutine(DamageTaken(0.1f, 0.5f, 0));
         }
         else if (other.CompareTag("GiantFoot"))
         {
-            StartCoroutine(DamageTaken(0.4f, 2f, 0));
+            StartCoroutine(DamageTaken(0.4f, 1f, 0));
             PushPlayer(other.transform.position, 650f);
         }
         else if (other.CompareTag("SpecialAttackDamage"))
         {
-            StartCoroutine(DamageTaken(0.4f, 2.5f, 0));
+            StartCoroutine(DamageTaken(0.4f, 2f, 0));
             PushPlayer(other.transform.position, 700f);
         }
     }
@@ -81,7 +81,7 @@ public class PlayerCollisions : MonoBehaviour
         if (other.CompareTag("Laser"))
         {
             //Debug.Log("Move out of the Laser's beam");
-            StartCoroutine(DamageTaken(0.1f, 2f, 0.25f));
+            StartCoroutine(DamageTaken(0.1f, 0.25f, 0.25f));
         }
     }
 

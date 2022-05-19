@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DungeonGenerator : MonoBehaviour
 {
@@ -39,6 +41,8 @@ public class DungeonGenerator : MonoBehaviour
 
     [SerializeField]
     private Minimap minimap;
+
+    private List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
     List<Cell> board;
 
@@ -92,13 +96,19 @@ public class DungeonGenerator : MonoBehaviour
                     var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(currentCell.status);
                     newRoom.tag = "Level";
-                    newRoom.name += " " + i + "-" + j;        
+                    newRoom.name += " " + i + "-" + j;
+
+                    surfaces.Add(newRoom.GetComponent<NavMeshSurface>());
                 }
             }
 
         }
 
-        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+        for (int i = 0; i < surfaces.Count; i++)
+        {
+            surfaces[i].BuildNavMesh();
+        }
+
         ConnectRooms();
         minimap.CreateMinimap(this.transform);
     }

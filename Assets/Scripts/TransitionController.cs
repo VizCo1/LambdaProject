@@ -36,7 +36,7 @@ public class TransitionController : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(0);
 
         yield return null;
     }

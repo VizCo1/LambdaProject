@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     private AudioSource buttonAudio;
+    [SerializeField]
+    private AudioSource music;
 
     private bool playButtonPressed;
     private bool exitButtonPressed;
@@ -30,7 +32,11 @@ public class MainMenu : MonoBehaviour
             StartCoroutine(MoveExitButton());
             StartCoroutine(MoveCamera());
 
-            if (playButtonMoved && exitButtonMoved && cameraMoved) SceneManager.LoadSceneAsync(1);
+            if (playButtonMoved && exitButtonMoved && cameraMoved)
+            {
+                music.Stop();
+                SceneManager.LoadSceneAsync(1);
+            }
         }
         else if (exitButtonPressed)
         {
