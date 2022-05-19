@@ -23,7 +23,6 @@ public class RoomStatus : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
         doorsAreDown = true;
-        //isRoomCompleted = false;
 
         if (enemies.Length == 0)
         {
@@ -31,6 +30,7 @@ public class RoomStatus : MonoBehaviour
             doorsAreDown = false;
             StartCoroutine(ElevateDoors(limit));
             gameController.SetRespawnPosition(new Vector3(0, 0.5f, 0));
+            gameController.actualRoom = this.gameObject;
         }
         else 
         {
@@ -50,6 +50,7 @@ public class RoomStatus : MonoBehaviour
             if (enemies.Length == 1)
             {
                 gameController.MovePortalToPos(transform.GetChild(PORTAL_POSITION_CHILD).position);
+                gameController.MusicToBossDefeated();
             }
         }
     }
@@ -90,6 +91,15 @@ public class RoomStatus : MonoBehaviour
                 gameController.gameObject.transform.position = new Vector3(transform.position.x, gameController.transform.position.y, transform.position.z);
                 gameController.actualRoom = this.gameObject;
                 gameController.enemyGroupNumber = enemyPool;
+            }
+
+            for (int i = 0; i < transform.GetChild(1).childCount; i++)
+            {
+                GameObject portal = transform.GetChild(1).GetChild(i).GetChild(0).gameObject;
+                if (portal.activeSelf)
+                {
+                    portal.GetComponent<MovePlayerToNextRoom>().portalSource.Play();
+                }
             }
         }
     }

@@ -19,6 +19,7 @@ public class SingleShooterEnemy : Enemy
 
     protected override void LaunchAttack()
     {
+        attackAudio.Play();
         Rigidbody rb = Instantiate(projectile, shootingTransform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.gameObject.transform.LookAt(player.transform.position);
         rb.AddForce(transform.forward * 8f, ForceMode.Impulse);

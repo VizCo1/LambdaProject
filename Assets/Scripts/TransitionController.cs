@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TransitionController : MonoBehaviour
 {
@@ -23,8 +24,20 @@ public class TransitionController : MonoBehaviour
     {
         playerMove.canMove = false;
         blackImageCanvas.SetActive(true);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         blackImageCanvas.SetActive(false);
         playerMove.canMove = true;
+    }
+
+    public IEnumerator ManageTransitionCanvasGameOver()
+    {
+        blackImageCanvas.SetActive(true);
+        playerMove.canMove = false;
+
+        yield return new WaitForSeconds(3);
+
+        SceneManager.LoadSceneAsync(2);
+
+        yield return null;
     }
 }

@@ -46,8 +46,7 @@ public class SwordCollisions : MonoBehaviour
                     enemy.TakeDamage(damage, false);
                 else
                     enemy.Heal(damage);
-            }
-         
+            }      
         }
         else if (other.CompareTag("GiantVulnerable"))
         {
@@ -58,6 +57,8 @@ public class SwordCollisions : MonoBehaviour
             Debug.Log("You damaged the boss");
             giantBoss.ResetVulnerableState();
             giantBoss.TakeDamage(damage, isColorBlue);
+
+            giantBoss.PlayDamageSound();
         }
     }
 }

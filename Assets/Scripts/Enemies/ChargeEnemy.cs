@@ -85,6 +85,7 @@ public class ChargeEnemy : Enemy
 
     protected override void LaunchAttack()
     {
+        attackAudio.Play();
         rb.AddForce(transform.forward * 75f, ForceMode.Impulse);
     }
 

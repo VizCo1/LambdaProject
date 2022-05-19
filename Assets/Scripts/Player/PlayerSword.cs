@@ -12,6 +12,9 @@ public class PlayerSword : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
 
+    [SerializeField] private AudioSource swordLoopRed;
+    [SerializeField] private AudioSource swordLoopBlue;
+
     [SerializeField] private Transform player;
     [SerializeField] private TrailRenderer[] trailRenderers;
     [SerializeField] private GameObject[] swords;
@@ -45,10 +48,10 @@ public class PlayerSword : MonoBehaviour
         playerInputActions.Player.Enable();
 
 
-        playerInputActions.Player.RotateLeft.performed += ctx => { RotationInputPerformed(true); ChangeSwordsColor(redGlow, redColor); };
+        playerInputActions.Player.RotateLeft.performed += ctx => { ManageAudio(false); RotationInputPerformed(true); ChangeSwordsColor(redGlow, redColor); };
         playerInputActions.Player.RotateLeft.canceled += ctx => { if (leftRotation) { RotationInputCanceled(); }  };
 
-        playerInputActions.Player.RotateRight.performed += ctx => {  RotationInputPerformed(false); ChangeSwordsColor(blueGlow, blueColor); };
+        playerInputActions.Player.RotateRight.performed += ctx => { ManageAudio(true); RotationInputPerformed(false); ChangeSwordsColor(blueGlow, blueColor); };
         playerInputActions.Player.RotateRight.canceled += ctx => { if (!leftRotation) { RotationInputCanceled(); } };
 
         gameObject.SetActive(false);
@@ -75,6 +78,7 @@ public class PlayerSword : MonoBehaviour
 
     void Yrotation(float t)
     {
+
         Vector3 vector3 = new (0, 1, 0);
         if (leftRotation)
         {
@@ -141,6 +145,20 @@ public class PlayerSword : MonoBehaviour
     {
         canRotate = false;
         timeStart = 0; 
+    }
+
+    private void ManageAudio(bool isSwordBlue)
+    {
+        if (isSwordBlue)
+        {
+            swordLoopBlue.enabled = true;
+            swordLoopRed.enabled = false;
+        }
+        else
+        {
+            swordLoopRed.enabled = true;
+            swordLoopBlue.enabled = false;
+        }
     }
 
     public void TwoSwordsSkill()

@@ -8,6 +8,7 @@ public class GiantSpecialAttack : MonoBehaviour
     private ParticleSystem particles;
     [SerializeField]
     private BoxCollider damagesPlayer;
+    public AudioSource specialAttackAudio03;
     private float scalingSpeed;
 
     private int numberOfCollisions;
@@ -16,10 +17,10 @@ public class GiantSpecialAttack : MonoBehaviour
     {
         numberOfCollisions = 0;
         scalingSpeed = 20f;
-        StartCoroutine(ScaleBalls());
+        StartCoroutine(ScaleBombs());
     }
 
-    IEnumerator ScaleBalls()
+    IEnumerator ScaleBombs()
     {
         float scale;
         while(true)
@@ -49,7 +50,7 @@ public class GiantSpecialAttack : MonoBehaviour
 
             if (numberOfCollisions == 16)
             {
-                Debug.Log("Destroying the balls");
+                specialAttackAudio03.Play();
                 damagesPlayer.enabled = true;
                 Destroy(gameObject, 0.25f);
             }

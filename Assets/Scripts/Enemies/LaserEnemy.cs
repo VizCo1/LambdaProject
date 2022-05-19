@@ -65,6 +65,7 @@ public class LaserEnemy : Enemy
     protected override void LaunchAttack()
     {
         laser.Play();
+        attackAudio.Play();
         laserCapsuleCollider.enabled = true;
         StartCoroutine(IncreaseLaserColliderHeight());
     }
@@ -74,6 +75,7 @@ public class LaserEnemy : Enemy
         reloading = true;
         yield return new WaitForSeconds(laserDuration);
 
+        attackAudio.Stop();
         reloadingParticles.Play();
 
         laserCapsuleCollider.enabled = false;
@@ -99,6 +101,7 @@ public class LaserEnemy : Enemy
     {
         base.ResetEnemy();
         StopAllCoroutines();
+        attackAudio.Stop();
         laser.Stop();
         reloadingParticles.Stop();
         //Debug.Log("Reset laser enemy");

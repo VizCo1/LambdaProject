@@ -37,7 +37,7 @@ public class MultipleShooterEnemy : Enemy
             transformPositionToUse = rightShootingTransform.position;
             leftSide = true;
         }
-
+        attackAudio.Play();
         Rigidbody rb = Instantiate(projectile, transformPositionToUse, Quaternion.identity).GetComponent<Rigidbody>();
         rb.gameObject.transform.LookAt(player.transform.position);
         rb.AddForce(transform.forward * 8f, ForceMode.Impulse);

@@ -36,6 +36,13 @@ public class GiantBoss : Enemy
     [SerializeField]
     private Transform waypointSpecialAttack;
 
+    [SerializeField]
+    private AudioSource specialAttackAudio01;
+    [SerializeField]
+    private AudioSource specialAttackAudio02;
+    [SerializeField]
+    private AudioSource specialAttackAudio03;
+
     private string lastAttack;
 
     private int toSpecialAttack;
@@ -150,6 +157,7 @@ public class GiantBoss : Enemy
         {
             rightFootCollider.SetActive(true);
             meleAttackParticles.gameObject.transform.position = rightFootBone.position;
+            attackAudio.Play();
             meleAttackParticles.Play();
         }
     }
@@ -166,6 +174,7 @@ public class GiantBoss : Enemy
         {
             leftFootCollider.SetActive(true);
             meleAttackParticles.gameObject.transform.position = leftFootBone.position;
+            attackAudio.Play();
             meleAttackParticles.Play();
         }        
     }
@@ -190,6 +199,7 @@ public class GiantBoss : Enemy
     {
         specialAttackParticles01.gameObject.transform.position = rightHandBone.position;
         specialAttackParticles01.Play();
+        specialAttackAudio01.Play();
         StartCoroutine(PlayParticlesWithDelay(specialAttackParticles01.main.duration, specialAttackParticles02));
     }
 
@@ -198,13 +208,15 @@ public class GiantBoss : Enemy
         yield return new WaitForSeconds(time);
         particleSystem.gameObject.transform.position = rightHandBone.position;
         particleSystem.Play();
+        specialAttackAudio02.Play();
         LaunchMagicAttack();
 
     }
 
     private void LaunchMagicAttack()
     {
-        Instantiate(specialAttack, new Vector3(waypointSpecialAttack.transform.position.x - 6, 5, waypointSpecialAttack.transform.position.z - 6), Quaternion.identity);
+        var obj = Instantiate(specialAttack, new Vector3(waypointSpecialAttack.transform.position.x - 6, 5, waypointSpecialAttack.transform.position.z - 6), Quaternion.identity);
+        obj.GetComponent<GiantSpecialAttack>().specialAttackAudio03 = specialAttackAudio03;
     }
 
     public void OnSpecialAttackFinished()

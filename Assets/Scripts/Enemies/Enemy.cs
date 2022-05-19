@@ -12,6 +12,12 @@ public class Enemy : MonoBehaviour
     public bool isEnemyBlue;
 
     [SerializeField]
+    protected AudioSource attackAudio;
+
+    [SerializeField]
+    protected AudioSource damageSound;
+
+    [SerializeField]
     protected float rotationSpeed;
     protected bool playerIsInFront;
 
@@ -65,6 +71,8 @@ public class Enemy : MonoBehaviour
     {
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+
+        damageSound.volume = 0.25f;
     }
 
     // Update is called once per frame
@@ -186,9 +194,13 @@ public class Enemy : MonoBehaviour
     {
         toInvulnerable();
 
+        PlayDamageSound();
+
         Debug.Log("Enemy takes damage");
 
         health -= damageAmount;
+
+        damageSound.pitch = 1f;
         takeDamageVFX.Play();
 
         if (health <= 0)
@@ -205,6 +217,9 @@ public class Enemy : MonoBehaviour
     {
         toInvulnerable();
 
+        damageSound.pitch = 2f;
+        PlayHealingSound();
+
         Debug.Log("Enemy is healing");
 
         health = health + healingAmount > maxHealth ? maxHealth : health + healingAmount;
@@ -214,7 +229,7 @@ public class Enemy : MonoBehaviour
     protected void toInvulnerable()
     {
         isInvulnerable = true;
-        Invoke(nameof(toVulnerable), 0.35f);
+        Invoke(nameof(toVulnerable), 0.15f);
     }
 
     private void toVulnerable()
@@ -225,6 +240,16 @@ public class Enemy : MonoBehaviour
     public bool isEnemyInvulnerable()
     {
         return isInvulnerable;
+    }
+
+    public void PlayDamageSound()
+    {
+        damageSound.Play();
+    }
+
+    public void PlayHealingSound()
+    {
+        damageSound.Play();
     }
 
     public virtual void ResetEnemy()

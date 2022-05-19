@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollisions : MonoBehaviour
 {
     [SerializeField]
-    PlayerMove playerMove;
-
-    Rigidbody playerRb;
+    private GameController gameController;
 
     [SerializeField]
-    GameObject sphere;
+    private PlayerMove playerMove;
+
+    private Rigidbody playerRb;
 
     [SerializeField]
-    PlayerHealthStats healthStats;
+    private GameObject sphere;
+
+    [SerializeField]
+    private PlayerHealthStats healthStats;
+
+    [SerializeField]
+    private AudioSource damageSound;
 
     private bool playerIsInvulnerable;
 
@@ -21,11 +28,6 @@ public class PlayerCollisions : MonoBehaviour
     {
         playerRb = playerMove.gameObject.GetComponent<Rigidbody>();
         playerIsInvulnerable = false;
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -98,6 +100,17 @@ public class PlayerCollisions : MonoBehaviour
         healthStats.TakeDamage(damage);
 
         StartCoroutine(PlayerCannotMoveForTime(time));
+
+        Debug.Log(healthStats.Health);
+        if (healthStats.Health <= 0)
+        {
+            // Do something then break;
+            playerIsInvulnerable = true;
+            gameController.GameOver();
+            yield break;
+        }
+
+        damageSound.Play();
 
         for (int i = 0; i < 2; i++)
         {

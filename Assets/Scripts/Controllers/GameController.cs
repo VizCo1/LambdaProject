@@ -5,6 +5,16 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
+    private AudioSource music01;
+    [SerializeField]
+    private AudioSource music02;
+
+    [SerializeField]
+    private AudioSource gameOverSound;
+    [SerializeField]
+    private AudioSource playerFallsSound;
+
+    [SerializeField]
     private Camera minimapCamera;
 
     [SerializeField]
@@ -58,10 +68,47 @@ public class GameController : MonoBehaviour
         portal.SetActive(true);
     }
 
+    public void MusicToBossDefeated()
+    {
+        music01.Stop();
+        music02.Play();
+    }
+
+    public void GameOver()
+    {
+        Debug.Log(actualRoom.name);
+        if (actualRoom != null)
+        {
+            for (int i = 0; i < actualRoom.transform.GetChild(1).childCount; i++)
+            {
+                GameObject portal = actualRoom.transform.GetChild(1).GetChild(i).GetChild(0).gameObject;
+                if (portal.activeSelf)
+                    portal.GetComponent<MovePlayerToNextRoom>().portalSource.Stop();
+            }
+        }
+
+        gameOverSound.Play();
+        StartCoroutine(transitionController.ManageTransitionCanvasGameOver());
+        music01.Stop();
+        music02.Stop();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Player"))
         {
+            player.transform.position = respawnPosition;
+            playerHealthStats.TakeDamage(1);
+
+            if (playerHealthStats.Health <= 0)
+            {
+                GameOver();
+                return;
+            }
+            else
+            {
+                playerFallsSound.Play();
+            }
 
             StartCoroutine(transitionController.ManageTransitionCanvas());
 
@@ -80,9 +127,7 @@ public class GameController : MonoBehaviour
                 }
             }
 
-            player.transform.position = respawnPosition;
-            playerHealthStats.TakeDamage(1);
-            playerMove.canMove = true; 
+            playerMove.canMove = true;
         }
     }
 }
