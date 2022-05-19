@@ -23,11 +23,13 @@ public class PlayerCollisions : MonoBehaviour
     private AudioSource damageSound;
 
     private bool playerIsInvulnerable;
+    private bool playerIsDead;
 
     void Start()
     {
         playerRb = playerMove.gameObject.GetComponent<Rigidbody>();
         playerIsInvulnerable = false;
+        playerIsDead = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -102,8 +104,9 @@ public class PlayerCollisions : MonoBehaviour
         StartCoroutine(PlayerCannotMoveForTime(time));
 
         Debug.Log(healthStats.Health);
-        if (healthStats.Health <= 0)
+        if (healthStats.Health <= 0 && !playerIsDead)
         {
+            playerIsDead = true;
             // Do something then break;
             playerIsInvulnerable = true;
             gameController.GameOver();
