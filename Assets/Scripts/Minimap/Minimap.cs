@@ -15,11 +15,6 @@ public class Minimap : MonoBehaviour
     [SerializeField]
     private Transform completeMinimapCamera;
 
-
-    void Update()
-    {
-        
-    }
     public void CreateMinimap(Transform dungeonGenerator)
     {
         int n = dungeonGenerator.transform.childCount;

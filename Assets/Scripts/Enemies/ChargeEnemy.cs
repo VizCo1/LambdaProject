@@ -94,7 +94,7 @@ public class ChargeEnemy : Enemy
         base.ResetEnemy();
         //Debug.Log("Reset charge enemy");
         propBlock.SetFloat("_FresnelThreshold", -0.2f);
-        StopCoroutine("PrepareCharge");
+        StopCoroutine(nameof(PrepareCharge));
         coroutineChargingIsActive = false;
         alreadyAttacked = false;
         coroutineChargingIsActive = false;
