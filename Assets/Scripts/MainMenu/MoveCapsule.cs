@@ -9,7 +9,7 @@ public class MoveCapsule : MonoBehaviour
 
     void Update()
     {
-        float y = Mathf.PingPong(Time.time * 0.5f, 1);
+        float y = Mathf.PingPong(Time.time * 0.75f, 1.5f);
         //Debug.Log(y);
         capsule.localPosition = new Vector3(0, 1 +  y, 0);
     }
