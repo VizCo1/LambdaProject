@@ -4,6 +4,8 @@ Small rogue like project developed for an university subject.
 
 It features a procedural level generation using First Depth Search, 4 types of enemies, and a final boss.
 
+The game can be played here: https://vizco.itch.io/lambda-project-v
+
 TRAILER: https://youtu.be/huLkCtYI4fk
 
 ![image](https://github.com/VizCo1/LambdaProject/assets/62243456/db5edb0b-ca90-42d8-9c21-d3a986c38c46)
